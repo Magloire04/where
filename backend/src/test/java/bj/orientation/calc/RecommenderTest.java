@@ -1,5 +1,7 @@
 package bj.orientation.calc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.config.EstimateurProperties;
 import bj.orientation.data.FiliereRepository;
 import bj.orientation.data.SerieMatcher;
@@ -9,12 +11,9 @@ import bj.orientation.model.NoteSaisie;
 import bj.orientation.model.Palier;
 import bj.orientation.model.RecommandationRequest;
 import bj.orientation.model.RecommandationResponse;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class RecommenderTest {
     private Recommender build() {

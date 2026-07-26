@@ -1,14 +1,13 @@
 package bj.orientation.calc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.model.Filiere;
 import bj.orientation.model.ModeEntree;
 import bj.orientation.model.Probabilites;
 import bj.orientation.model.StatutEstime;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class ArgumentaireBuilderTest {
     private final ArgumentaireBuilder builder = new ArgumentaireBuilder();

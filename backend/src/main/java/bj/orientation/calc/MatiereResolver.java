@@ -1,10 +1,9 @@
 package bj.orientation.calc;
 
 import bj.orientation.data.SubjectDictionary;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  * Résout, pour une série donnée, les 3 matières canoniques de calcul d'une filière

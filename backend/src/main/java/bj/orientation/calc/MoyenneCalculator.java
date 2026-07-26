@@ -1,13 +1,12 @@
 package bj.orientation.calc;
 
 import bj.orientation.model.MatiereNote;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /** Calcule la moyenne de classement pondérée sur les 3 matières d'une filière. */
 @Component

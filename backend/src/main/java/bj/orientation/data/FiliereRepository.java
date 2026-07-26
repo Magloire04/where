@@ -4,11 +4,10 @@ import bj.orientation.model.Filiere;
 import bj.orientation.model.ModeEntree;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Repository;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /** Charge, au démarrage, les filières publiques depuis les ressources JSON du guide. */
 @Repository

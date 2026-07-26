@@ -1,12 +1,11 @@
 package bj.orientation.calc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.model.MatiereNote;
+import java.util.List;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class MoyenneCalculatorTest {
     private final MoyenneCalculator calculator = new MoyenneCalculator();

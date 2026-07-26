@@ -1,9 +1,9 @@
 package bj.orientation.calc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.data.SubjectDictionary;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class MatiereResolverTest {
     private final MatiereResolver resolver = new MatiereResolver(new SubjectDictionary());
