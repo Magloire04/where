@@ -1,0 +1,480 @@
+{
+  "categorie": "Établissements Privés d'Enseignement Supérieur (EPES) — Filières agréées (régime agrément)",
+  "source": "Guide d'orientation 2025-2026 (MESRS Bénin), section IX",
+  "note": "Le guide ne publie PAS de quota bourse/aide, ni de série de bac ou de matières pour ces filières privées agréées. Seuls l'établissement et les offres de formation agréées sont listés. Les boursiers d'État peuvent être orientés dans une filière AGRÉÉE d'un EPES, mais aucune donnée de quota n'est fournie ici.",
+  "etablissements": [
+    {
+      "num": 1,
+      "etablissement": "Centre International de Formation à l'Expertise Comptable (CIFEC)",
+      "filieres_agreees": [
+        "Licence Professionnelle en Techniques Comptables et Financières"
+      ],
+      "page": 73
+    },
+    {
+      "num": 2,
+      "etablissement": "Ecole de Formation des Enseignants du Secondaire - SAPIENTIA",
+      "filieres_agreees": [
+        "BAPES Education Physique et Sportive",
+        "BAPES en Sciences de la Vie et de la Terre",
+        "BAPES Histoire Géographie",
+        "BAPES Lettres Modernes",
+        "BAPES Mathématiques-Informatique",
+        "BAPES Physique Chimie et Technologie"
+      ],
+      "page": 73
+    },
+    {
+      "num": 3,
+      "etablissement": "Ecole Supérieure d'Administration et d'Economie (ESAE)",
+      "filieres_agreees": [
+        "Licence en Réalisation",
+        "Licence en Sciences Economiques",
+        "Licence professionnelle en Administration des Finances",
+        "Licence professionnelle en Administration Générale",
+        "Licence professionnelle en Journalisme",
+        "Licence professionnelle en Science Juridique",
+        "Licence professionnelle en Sciences de Gestion",
+        "Licence professionnelle en Administration et Gestion des Ressources Humaines",
+        "Licence professionnelle en finance et comptabilité"
+      ],
+      "page": 73
+    },
+    {
+      "num": 4,
+      "etablissement": "Ecole Supérieure d'Enseignement Professionnel (ESEP LE BERGER)",
+      "filieres_agreees": [
+        "Licence professionnelle en Banque Finance Assurance",
+        "Licence professionnelle en Marketing et Action Commerciale",
+        "Licence professionnelle en Transport et Logistique"
+      ],
+      "page": 73
+    },
+    {
+      "num": 5,
+      "etablissement": "Ecole Supérieure d'Entrepreneuriat et de la Prospérité (ESPERANZA)",
+      "filieres_agreees": [
+        "Licence professionnelle en Entrepreneuriat Option Création et Reprise d'Entreprise",
+        "Licence professionnelle en Entrepreneuriat option Hôtellerie restauration et tourisme"
+      ],
+      "page": 73
+    },
+    {
+      "num": 6,
+      "etablissement": "Ecole Supérieure d'Expertise Comptable (ESEC)",
+      "filieres_agreees": [
+        "Licence professionnelle en Comptabilité Gestion"
+      ],
+      "page": 73
+    },
+    {
+      "num": 7,
+      "etablissement": "Ecole Supérieure d'Ingénierie Sainte Marie Stella",
+      "filieres_agreees": [
+        "Classe Préparatoire au cycle d'ingénieur"
+      ],
+      "page": 73
+    },
+    {
+      "num": 8,
+      "etablissement": "Ecole Supérieure de Génie Civil VERECHAGUINE A.K. (ESGC)",
+      "filieres_agreees": [
+        "Licence professionnelle en Génie Civil",
+        "Licence professionnelle en Génie de l'eau",
+        "Licence professionnelle en Géomètre Topographe"
+      ],
+      "page": 74
+    },
+    {
+      "num": 9,
+      "etablissement": "Ecole Supérieure de Génie Télécoms et TIC (ESGTIC – Ecce Homo)",
+      "filieres_agreees": [
+        "Licence professionnelle en Génie Télécoms et TIC",
+        "Licence professionnelle en Téléinformatique"
+      ],
+      "page": 74
+    },
+    {
+      "num": 10,
+      "etablissement": "Ecole Supérieure de Gestion d'Informatique et des Sciences (ESGIS)",
+      "filieres_agreees": [
+        "Licence professionnelle en Comptabilité, Contrôle et Audit (CCA)",
+        "Licence professionnelle en Informatique, Réseaux et Télécommunication",
+        "Licence professionnelle en Management International (MI)",
+        "Licence professionnelle en Gestion de Projets",
+        "Licence professionnelle en Marketing et Communication (MC)",
+        "Licence professionnelle en Transport et Logistique",
+        "Licence professionnelle en Banque et Finance"
+      ],
+      "page": 74
+    },
+    {
+      "num": 11,
+      "etablissement": "Ecole Supérieure De Gestion SERENA",
+      "filieres_agreees": [
+        "Licence professionnelle en Banque Finance et Assurance",
+        "Licence Professionnelle en Comptabilité Contrôle et Audit",
+        "Licence professionnelle en Gestion des Ressources Humaines",
+        "Licence Professionnelle en Marketing et stratégie d'Entreprise",
+        "Licence Professionnelle en Transport et Logistique et Métiers portuaires",
+        "Licence professionnelle en Finance et Contrôle de Gestion"
+      ],
+      "page": 74
+    },
+    {
+      "num": 12,
+      "etablissement": "Ecole Supérieure de Management (ESM)",
+      "filieres_agreees": [
+        "Licence professionnelle en Gestion et Administration des Entreprises",
+        "Licence professionnelle en Hôtellerie et Tourisme",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence Génie Informatique"
+      ],
+      "page": 74
+    },
+    {
+      "num": 13,
+      "etablissement": "Ecole Supérieure de Technologie et de Gestion (ESTG)",
+      "filieres_agreees": [
+        "Licence Professionnelle en Management des Ressources Humaines",
+        "Licence Professionnelle en Transport Logistique",
+        "Licence Sciences de Gestion"
+      ],
+      "page": 74
+    },
+    {
+      "num": 14,
+      "etablissement": "Ecole Supérieure des Métiers des Energies Renouvelables (ESMER)",
+      "filieres_agreees": [
+        "Licence professionnelle en Génie électrique et Energies renouvelables",
+        "Licence professionnelle en Génie Energétique et Développement Durable",
+        "Licence professionnelle en Génie Frigorifique Climatisation et Energies Renouvelables"
+      ],
+      "page": 75
+    },
+    {
+      "num": 15,
+      "etablissement": "Ecole Supérieure Jean Michel Le Faucon (ESJMF)",
+      "filieres_agreees": [
+        "Licence professionnelle en Analyse Biologique et Biochimique",
+        "Licence professionnelle en Banque Finance et Assurance",
+        "Licence professionnelle en Bâtiment et Travaux Publics",
+        "Licence professionnelle en Comptabilité Gestion",
+        "Licence professionnelle en Géomètre Topographe",
+        "Licence professionnelle en Hôtellerie et Tourisme",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing et Action Commerciale",
+        "Licence professionnelle en Système Informatique et Logiciel",
+        "Licence professionnelle en transport et logistique"
+      ],
+      "page": 75
+    },
+    {
+      "num": 16,
+      "etablissement": "Ecole supérieure Sainte Félicité (ESSF)",
+      "filieres_agreees": [
+        "Licence professionnelle Banque Finance Assurance",
+        "Licence professionnelle en Finance Comptabilité et Audit",
+        "Licence professionnelle en Marketing Communication et Commerce",
+        "Licence professionnelle en communication et relations publiques",
+        "Licence professionnelle en transport et logistique"
+      ],
+      "page": 75
+    },
+    {
+      "num": 17,
+      "etablissement": "Ecole PIGIER BENIN",
+      "filieres_agreees": [
+        "Licence professionnelle en Audit et Contrôle de Gestion",
+        "Licence professionnelle en Banque et Finance d'Entreprise",
+        "Licence professionnelle en Gestion des Transports et Logistique",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Négociation et Communication Multimédia",
+        "Licence professionnelle en Réseaux et Génie Logiciel"
+      ],
+      "page": 75
+    },
+    {
+      "num": 18,
+      "etablissement": "Haute Ecole de Commerce et de Management (HECM)",
+      "filieres_agreees": [
+        "Licence professionnelle en Administration et Gestion des Entreprises",
+        "Licence professionnelle en Administration et Gestion des Ressources Humaines",
+        "Licence professionnelle en Banque Finance et Assurance",
+        "Licence professionnelle en Communication et Négociation Commerciale",
+        "Licence professionnelle en Contrôle de Qualité et Génie Agroalimentaire",
+        "Licence professionnelle en Finance et Contrôle de Gestion",
+        "Licence professionnelle en Génie Informatique",
+        "Licence professionnelle en Gestion Transport et Logistique",
+        "Licence professionnelle en Journalisme",
+        "Licence professionnelle en Télécommunications",
+        "Licence professionnelle en Tourisme"
+      ],
+      "page": 76
+    },
+    {
+      "num": 19,
+      "etablissement": "Haute Ecole de Gestion et de Journalisme de Bohicon (HEGJ)",
+      "filieres_agreees": [
+        "Licence en Journalisme",
+        "Licence Finance Banque et Assurance",
+        "Licence professionnelle en Management des Entreprises"
+      ],
+      "page": 76
+    },
+    {
+      "num": 20,
+      "etablissement": "Institut International de Management (IIM)",
+      "filieres_agreees": [
+        "Licence professionnelle en Gestion des Ressources Humaines",
+        "Licence professionnelle en Audit et Finance des Entreprises",
+        "Licence professionnelle en Communication et Marketing"
+      ],
+      "page": 76
+    },
+    {
+      "num": 21,
+      "etablissement": "Institut Jean Paul II de Philosophie et de Sciences Humaines",
+      "filieres_agreees": [
+        "Licence professionnelle en Philosophie",
+        "Licence professionnelle en Psychologie et Sciences de l'Education",
+        "Licence professionnelle en Sciences du Mariage et de la Famille"
+      ],
+      "page": 76
+    },
+    {
+      "num": 22,
+      "etablissement": "Institut Supérieur d'Expertise et Gestion (ISEG)",
+      "filieres_agreees": [
+        "Licence professionnelle en Banque Finance Assurance",
+        "Licence professionnelle en Comptabilité Contrôle de Gestion et Audit",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing et Communication"
+      ],
+      "page": 76
+    },
+    {
+      "num": 23,
+      "etablissement": "Institut Supérieur de Communication et de Gestion (ISCG)",
+      "filieres_agreees": [
+        "Licence professionnelle en Comptabilité, contrôle et Audit",
+        "Licence professionnelle en Banque et Finance",
+        "Licence professionnelle en Droit",
+        "Licence professionnelle en Gestion des Ressources Humaines",
+        "Licence professionnelle en Journalisme",
+        "Licence professionnelle en Marketing et Communication"
+      ],
+      "page": 77
+    },
+    {
+      "num": 24,
+      "etablissement": "Institut Supérieur de Formation des Educateurs Spécialisés Laura Vicuña",
+      "filieres_agreees": [
+        "Licence professionnelle en Education Spécialisée"
+      ],
+      "page": 77
+    },
+    {
+      "num": 25,
+      "etablissement": "Institut Supérieur de Management Adonaï (ISM Adonaï)",
+      "filieres_agreees": [
+        "Licence professionnelle en Banque Finance et Assurance",
+        "Licence professionnelle en Comptabilité, Contrôle et Audit",
+        "Licence professionnelle en Droit des Affaires",
+        "Licence professionnelle en Entreprenariat et Gestion des Projets",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing",
+        "Licence professionnelle en transport et logistique"
+      ],
+      "page": 77
+    },
+    {
+      "num": 26,
+      "etablissement": "Institut Supérieur de Management et de Technologies Saint SALOMON",
+      "filieres_agreees": [
+        "Licence professionnelle en Communication d'Entreprise",
+        "Licence professionnelle en Comptabilité Gestion",
+        "Licence professionnelle en Gestion des Ressources Humaines"
+      ],
+      "page": 77
+    },
+    {
+      "num": 27,
+      "etablissement": "Institut Supérieur des Métiers de l'Audiovisuel (ISMA)",
+      "filieres_agreees": [
+        "Licence professionnelle en Audiovisuelle",
+        "Licence professionnelle en Journalisme Audiovisuel",
+        "Licence professionnelle en Réalisation"
+      ],
+      "page": 77
+    },
+    {
+      "num": 28,
+      "etablissement": "Institut Supérieur Golden Academy (ISGA)",
+      "filieres_agreees": [
+        "Licence professionnelle en Juriste conseil",
+        "Licence professionnelle en Monétique"
+      ],
+      "page": 77
+    },
+    {
+      "num": 29,
+      "etablissement": "Institut Supérieur Saint Paul de Tarse (ISSPT)",
+      "filieres_agreees": [
+        "Licence professionnelle en Comptabilité Gestion",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing Action Commerciale"
+      ],
+      "page": 77
+    },
+    {
+      "num": 30,
+      "etablissement": "Institut Universitaire de Sciences Economiques et Biologiques Appliquée (IUSEBA)",
+      "filieres_agreees": [
+        "Licence Professionnelle en Finance, Comptabilité et Audit",
+        "Licence professionnelle en Informatique de Gestion",
+        "Licence Professionnelle en Sciences Biologiques Appliquées",
+        "Licence Professionnelle Marketing Communication et Commerce"
+      ],
+      "page": 78
+    },
+    {
+      "num": 31,
+      "etablissement": "Institut Universitaire MatheFineco (IUM)",
+      "filieres_agreees": [
+        "Cycle préparatoire aux écoles d'Ingénieur",
+        "Licence professionnelle en Sciences actuarielles",
+        "Licence professionnelle en Ingénierie financière",
+        "Licence professionnelle en Banques et Marché des Capitaux",
+        "Licence professionnelle en Finances publiques et Programmation financière",
+        "Licence professionnelle en Gestion industrielle et Gestion des projets",
+        "Licence professionnelle en Administration Générale",
+        "Licence professionnelle en Comptabilité et Gestion",
+        "Licence professionnelle en Etude des Langues Française, Anglaise et Yoruba",
+        "Licence professionnelle en gestion des Ressources humaines",
+        "Licence professionnelle en Journalisme",
+        "Licence professionnelle en Relations Internationales"
+      ],
+      "page": 78,
+      "note": "Frontières programme/établissement lues sur liste dense — à revérifier"
+    },
+    {
+      "num": 32,
+      "etablissement": "Institut Universitaire Panafricain (IUP)",
+      "filieres_agreees": [
+        "Licence professionnelle en Science Politique et Relation Internationale",
+        "Licence professionnelle en Administration des Affaires",
+        "Licence professionnelle en Banque Finance et Assurance",
+        "Licence professionnelle en Communication d'Entreprise",
+        "Licence professionnelle en Comptabilité et Finance d'Entreprise",
+        "Licence professionnelle en Informatique",
+        "Licence professionnelle en Journalisme",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing et Action Commerciale",
+        "Licence professionnelle en secrétariat de direction"
+      ],
+      "page": 78
+    },
+    {
+      "num": 33,
+      "etablissement": "Institut Universitaire Les COURS SONOU",
+      "filieres_agreees": [
+        "Licence professionnelle en transport et logistique",
+        "Licence professionnelle en management des collectivités locales",
+        "Licence professionnelle en tourisme, hôtellerie et restauration",
+        "Licence professionnelle en systèmes informatique et logiciels",
+        "Licence professionnelle en sécurité des systèmes et réseau informatique"
+      ],
+      "page": 79
+    },
+    {
+      "num": 34,
+      "etablissement": "IRGIB-AFRICA UNIVERSITY",
+      "filieres_agreees": [
+        "Licence professionnelle en Administration des Affaires",
+        "Licence professionnelle en Analyses Biomédicales",
+        "Licence professionnelle en Génie des Procédés d'Expertises et Analyses",
+        "Licence professionnelle en Génie des Procédés de Fabrication et de Maintenance Industrielle",
+        "Licence professionnelle en Génie des Procédés de Productions Industrielles",
+        "Licence professionnelle en Génie des Technologies de l'information et de la Communication",
+        "Licence professionnelle en Sciences Economiques",
+        "Licence professionnelle en Sciences Politiques et Juridiques"
+      ],
+      "page": 79
+    },
+    {
+      "num": 35,
+      "etablissement": "POLYTECH ADA (Ecole Polytechnique des Génies)",
+      "filieres_agreees": [
+        "Licence professionnelle en Génie Civil"
+      ],
+      "page": 79
+    },
+    {
+      "num": 36,
+      "etablissement": "Université Africaine de Technologie et de Management (UATM-GASA)",
+      "filieres_agreees": [
+        "Licence professionnelle en Agronomie",
+        "Licence professionnelle en Banque Finance Assurance",
+        "Licence professionnelle en Biotechnologie",
+        "Licence professionnelle en Communication et Relations Internationales",
+        "Licence professionnelle en Entrepreneuriat et Gestion des Projets",
+        "Licence professionnelle en Finance Comptabilité et Audit",
+        "Licence professionnelle en Management Communication et Commerce",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Réseaux Informatique et Télécommunication",
+        "Licence professionnelle en Sciences Juridiques",
+        "Licence professionnelle en Système Industriel",
+        "Licence professionnelle en Système Informatique et Logiciel",
+        "Licence Transport et Logistique et maritime"
+      ],
+      "page": 79
+    },
+    {
+      "num": 37,
+      "etablissement": "Université Catholique d'Afrique de l'Ouest (UCAO)",
+      "filieres_agreees": [
+        "Licence professionnelle en Action Commerciale et Force de Vente",
+        "Licence professionnelle en Assurance",
+        "Licence professionnelle en Communication et Action Publicitaire",
+        "Licence professionnelle en Electronique",
+        "Licence professionnelle en Gestion de l'Environnement et Aménagement du Territoire",
+        "Licence professionnelle en Informatique de Gestion",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en réseaux informatiques",
+        "Licence professionnelle en Télécommunication et Réseaux Informatiques",
+        "Licence professionnelle en transport et logistique"
+      ],
+      "page": 80
+    },
+    {
+      "num": 38,
+      "etablissement": "Université Polytechnique Internationale Obiang Nguema Mbasogo (UPI-ONM)",
+      "filieres_agreees": [
+        "Licence en Audit Interne et Contrôle de Gestion (AICG)",
+        "Licence en Banque, Finance et Assurance (BFA)",
+        "Licence en Techniques Comptables et Financières (TCF)",
+        "Licence Informatique Appliquée à la Gestion des Entreprises (LIAGE)",
+        "Licence Professionnelle en Informatique, Réseaux et Télécommunication (LIRT)",
+        "Licence Professionnelle en Management des Ressources Humaines (LMRH)",
+        "Licence Professionnelle en Marketing et Communication Commerciale (MCC)",
+        "Licence Transport et Logistique (TL)"
+      ],
+      "page": 80
+    },
+    {
+      "num": 39,
+      "etablissement": "Université Protestante de l'Afrique de l'Ouest (UPAO)",
+      "filieres_agreees": [
+        "Licence professionnelle en Banque, Finance et Assurance",
+        "Licence professionnelle en Comptabilité et Gestion",
+        "Licence professionnelle en Education et Pédagogie",
+        "Licence professionnelle en Génie Informatique et Télécommunication",
+        "Licence professionnelle en Management des Ressources Humaines",
+        "Licence professionnelle en Marketing et Communication",
+        "Licence professionnelle en secrétariat de direction"
+      ],
+      "page": 80
+    }
+  ]
+}
