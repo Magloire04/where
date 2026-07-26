@@ -1,5 +1,6 @@
 package bj.orientation.web;
 
+import bj.orientation.ocr.OcrIndisponibleException;
 import bj.orientation.web.dto.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,5 +19,12 @@ public class GlobalExceptionHandler {
             "VALIDATION_ERROR",
             "Requête invalide : série requise et notes valides (0 à 20) obligatoires.",
             HttpStatus.BAD_REQUEST.value());
+    }
+
+    @ExceptionHandler(OcrIndisponibleException.class)
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public ApiErrorResponse onOcrIndisponible(OcrIndisponibleException exception) {
+        return ApiErrorResponse.of(
+            "OCR_INDISPONIBLE", exception.getMessage(), HttpStatus.SERVICE_UNAVAILABLE.value());
     }
 }
