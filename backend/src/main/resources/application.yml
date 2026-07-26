@@ -4,6 +4,10 @@ spring:
   application:
     name: orientation-backend
 
+ocr:
+  tessdata-path: ${OCR_TESSDATA_PATH:}
+  langue: fra
+
 estimateur:
   sigma: 1.2
   paliers:
