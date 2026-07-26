@@ -1,10 +1,9 @@
 package bj.orientation.data;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.springframework.stereotype.Component;
 
 /** Détermine si une filière accepte une série donnée (correspondance par token exact). */
 @Component

@@ -10,12 +10,11 @@ import bj.orientation.model.Probabilites;
 import bj.orientation.model.Recommandation;
 import bj.orientation.model.RecommandationRequest;
 import bj.orientation.model.RecommandationResponse;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
+import org.springframework.stereotype.Component;
 
 /** Orchestre la recommandation : éligibilité, calcul, estimation, classement hybride. */
 @Component

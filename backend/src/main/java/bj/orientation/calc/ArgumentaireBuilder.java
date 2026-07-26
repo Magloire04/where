@@ -2,9 +2,8 @@ package bj.orientation.calc;
 
 import bj.orientation.model.Filiere;
 import bj.orientation.model.Probabilites;
-import org.springframework.stereotype.Component;
-
 import java.util.Locale;
+import org.springframework.stereotype.Component;
 
 /** Construit l'argumentaire (quelques lignes) défendant une recommandation, sans LLM. */
 @Component

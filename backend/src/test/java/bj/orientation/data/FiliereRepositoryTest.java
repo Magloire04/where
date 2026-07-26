@@ -1,9 +1,9 @@
 package bj.orientation.data;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.model.ModeEntree;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class FiliereRepositoryTest {
     private final FiliereRepository repo = new FiliereRepository();

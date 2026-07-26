@@ -1,10 +1,9 @@
 package bj.orientation.data;
 
-import org.springframework.stereotype.Component;
-
 import java.text.Normalizer;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 /** Normalise les libellés de matières (relevé + guide) vers un code canonique. */
 @Component

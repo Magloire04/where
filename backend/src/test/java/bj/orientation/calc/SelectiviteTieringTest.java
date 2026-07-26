@@ -1,15 +1,14 @@
 package bj.orientation.calc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bj.orientation.config.EstimateurProperties;
 import bj.orientation.model.Filiere;
 import bj.orientation.model.ModeEntree;
 import bj.orientation.model.Palier;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class SelectiviteTieringTest {
     private final EstimateurProperties props = new EstimateurProperties(
