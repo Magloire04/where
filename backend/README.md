@@ -31,3 +31,14 @@ pas besoin.
 ## API
 Base : `/api/v1`. Enveloppe de réponse standard ASIN `{ "data": … }` / erreurs
 `{ "error": { "code", "message", "status" } }`. Contrat : `openapi.yaml`.
+
+## OCR du relevé
+`POST /api/v1/releves` (multipart `fichier`) extrait matière/note/coefficient via
+Tesseract (Tess4J). Pour l'activer réellement :
+- bibliothèque native **Tesseract** installée (Linux : `apt-get install tesseract-ocr tesseract-ocr-fra`),
+- données de langue `fra.traineddata` dans un dossier `tessdata`, chemin fourni par
+  la variable d'environnement `OCR_TESSDATA_PATH`.
+
+Sans ces prérequis, l'endpoint renvoie `503 OCR_INDISPONIBLE` et l'utilisateur
+saisit ses notes **manuellement** (parcours de repli prévu). Le fichier uploadé
+est traité en mémoire et **jamais conservé**.
