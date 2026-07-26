@@ -1,0 +1,32 @@
+{
+  "titre": "Grille de coefficients du baccalauréat par série (pour le calcul de la moyenne de classement)",
+  "formule": "M = (n1*c1 + n2*c2 + n3*c3) / (c1 + c2 + c3), où n = note de la matière et c = coefficient de la matière dans la série",
+  "avertissement": "IMPORTANT: Le guide d'orientation ne publie QUE deux exemples de coefficients (Médecine séries C et D). La grille officielle complète (toutes matières × toutes séries) n'est PAS publique et doit être obtenue auprès de l'Office du Baccalauréat du Bénin. Les valeurs marquées source='guide' sont confirmées. Les autres sont marquées 'A_VERIFIER' (valeur null) et NE DOIVENT PAS être utilisées en production tant qu'elles ne sont pas confirmées. C'est le principal point bloquant restant pour un calcul exact.",
+  "series": {
+    "D": {
+      "confirmees_guide": { "SVT": 5, "Maths": 4, "SPCT": 4, "PCT": 4 },
+      "a_verifier": { "Francais": null, "Philo": null, "Hist-Geo": null, "Anglais": null }
+    },
+    "C": {
+      "confirmees_guide": { "Maths": 6, "SPCT": 5, "PCT": 5, "SVT": 2 },
+      "a_verifier": { "Francais": null, "Philo": null, "Hist-Geo": null, "Anglais": null }
+    },
+    "A1": { "confirmees_guide": {}, "a_verifier": { "Francais": null, "Philo": null, "Hist-Geo": null, "Anglais": null, "Maths": null, "LV1": null, "LV2": null } },
+    "A2": { "confirmees_guide": {}, "a_verifier": { "Francais": null, "Philo": null, "Hist-Geo": null, "Anglais": null, "Maths": null, "LV1": null } },
+    "B":  { "confirmees_guide": {}, "a_verifier": { "Francais": null, "Economie": null, "Maths": null, "Philo": null, "Hist-Geo": null, "Anglais": null } },
+    "E":  { "confirmees_guide": {}, "a_verifier": { "Maths": null, "PCT": null, "SPCT": null, "Francais": null, "ConstructionMecanique": null } },
+    "F1": { "confirmees_guide": {}, "a_verifier": { "Maths": null, "SPCT": null, "ConstructionMecanique": null, "RDM": null } },
+    "F2": { "confirmees_guide": {}, "a_verifier": { "Maths": null, "SPCT": null, "EST": null } },
+    "F3": { "confirmees_guide": {}, "a_verifier": { "Maths": null, "SPCT": null, "Electrotechnique": null } },
+    "F4": { "confirmees_guide": {}, "a_verifier": { "Maths": null, "SPCT": null, "RDM": null, "BetonArme": null } },
+    "G1": { "confirmees_guide": {}, "a_verifier": { "EtudeDeCas": null, "Francais": null, "Economie": null, "Anglais": null } },
+    "G2": { "confirmees_guide": {}, "a_verifier": { "EtudeDeCas": null, "Maths": null, "Francais": null, "Economie": null, "Anglais": null } },
+    "G3": { "confirmees_guide": {}, "a_verifier": { "EtudeDeCas": null, "Maths": null, "Francais": null, "Anglais": null } }
+  },
+  "notes_matieres": {
+    "SPCT": "= PCT = Sciences Physiques, Chimie et Technologie (mêmes coefficients)",
+    "LV1_LV2": "Langue Vivante 1 / 2 (Anglais, Espagnol, Allemand selon la série)",
+    "EtudeDeCas": "Épreuve des séries G",
+    "CultureGenerale": "Épreuve des concours (INJEPS, ENS, ENSPD, ENSET, etc.) — pas un coefficient de classement standard"
+  }
+}

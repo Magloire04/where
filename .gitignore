@@ -1,0 +1,36 @@
+# ===== Java / Maven (backend Spring Boot) =====
+target/
+*.class
+!.mvn/wrapper/maven-wrapper.jar
+
+# ===== Gradle (si utilisé) =====
+.gradle/
+
+# ===== Node / React (frontend) =====
+node_modules/
+/frontend/build/
+/frontend/dist/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Config locale / secrets =====
+.env
+.env.local
+application-local.properties
+application-local.yml
+
+# ===== IDE =====
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+*.log
