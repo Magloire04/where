@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: API Orientation & estimation de bourse (bacheliers du Bénin)
+  version: "1.0.0"
+  description: >
+    Estime, pour une série de bac et des notes/coefficients, le statut probable
+    (boursier / aide / payant) par filière et renvoie les 3 meilleures cotes.
+    Contrat de référence (ASIN) — fait foi sur le code.
+servers:
+  - url: /api/v1
+paths:
+  /series:
+    get:
+      summary: Liste des séries de bac supportées
+      operationId: listerSeries
+      responses:
+        "200":
+          description: Liste des codes de séries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: string
+                    example: ["A1", "A2", "B", "C", "D", "E", "G1", "G2", "G3"]
+  /recommandations:
+    post:
+      summary: Calcule les recommandations d'orientation pour un profil
+      operationId: recommander
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecommandationRequest"
+      responses:
+        "200":
+          description: Recommandations calculées
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/RecommandationResponse"
+        "400":
+          description: Requête invalide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+components:
+  schemas:
+    NoteSaisie:
+      type: object
+      required: [libelle, note, coefficient]
+      properties:
+        libelle:
+          type: string
+          example: "Maths"
+        note:
+          type: number
+          minimum: 0
+          maximum: 20
+          example: 16
+        coefficient:
+          type: number
+          minimum: 0
+          example: 4
+    RecommandationRequest:
+      type: object
+      required: [serie, notes]
+      properties:
+        serie:
+          type: string
+          example: "D"
+        notes:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/NoteSaisie"
+        domaine:
+          type: string
+          nullable: true
+          description: Filtre domaine optionnel (réservé V2)
+    Filiere:
+      type: object
+      properties:
+        num: { type: integer }
+        universite: { type: string }
+        etablissement: { type: string }
+        filiere: { type: string }
+        quotaBourse: { type: integer }
+        quotaAideFpp: { type: integer }
+        modeEntree:
+          type: string
+          enum: [CLASSEMENT, CONCOURS, PAYANT]
+        seriesBacRaw: { type: string }
+        matieresRaw: { type: string }
+        debouches:
+          type: array
+          items: { type: string }
+        page: { type: integer }
+    Probabilites:
+      type: object
+      properties:
+        pBourse: { type: number, example: 0.82 }
+        pAide: { type: number, example: 0.0 }
+        pPayant: { type: number, example: 0.18 }
+        statut:
+          type: string
+          enum: [BOURSIER, AIDE, PAYANT, CONCOURS, PAYANT_UNIQUEMENT]
+        pctAffiche: { type: number, example: 0.82 }
+    Recommandation:
+      type: object
+      properties:
+        filiere:
+          $ref: "#/components/schemas/Filiere"
+        moyenne: { type: number, example: 16.08 }
+        proba:
+          $ref: "#/components/schemas/Probabilites"
+        argumentaire: { type: string }
+    RecommandationResponse:
+      type: object
+      properties:
+        top3:
+          type: array
+          items: { $ref: "#/components/schemas/Recommandation" }
+        alternatives:
+          type: array
+          items: { $ref: "#/components/schemas/Recommandation" }
+        concours:
+          type: array
+          items: { $ref: "#/components/schemas/Filiere" }
+        payantes:
+          type: array
+          items: { $ref: "#/components/schemas/Filiere" }
+        donneesInsuffisantes:
+          type: array
+          items: { $ref: "#/components/schemas/Filiere" }
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: string, example: "VALIDATION_ERROR" }
+            message: { type: string }
+            status: { type: integer, example: 400 }
