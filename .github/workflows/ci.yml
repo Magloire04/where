@@ -25,3 +25,28 @@ jobs:
         run: mvn -B spotless:check
       - name: Build et tests
         run: mvn -B test
+
+  frontend:
+    name: Frontend (format + lint + test + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Installer les dépendances
+        run: npm ci --legacy-peer-deps
+      - name: Vérifier le format (Prettier)
+        run: npm run format:check
+      - name: Lint (oxlint)
+        run: npm run lint
+      - name: Tests (Vitest)
+        run: npm test
+      - name: Build
+        run: npm run build
