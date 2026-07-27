@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: orientation-backend
+
+ocr:
+  tessdata-path: ${OCR_TESSDATA_PATH:}
+  langue: fra
+
+estimateur:
+  sigma: 1.2
+  paliers:
+    T1:
+      bourse: 15.0
+    T2:
+      bourse: 13.0
+      aide: 11.5
+    T3:
+      bourse: 11.5
+      aide: 10.5
+    T4:
+      bourse: 10.5
+      aide: 10.0
+  prestige:
+    - "Médecine Générale"
+    - "Médecine Humaine"
+    - "Pharmacie"
+    - "Kinésithérapie"
+    - "Classes préparatoires MPSI (Mathématiques, Physiques et Science de l'Ingénieur) et PCSI (Physique-Chimie et Science de l'Ingénieur)"
+    - "Sciences et Techniques de l'Ingénieur"
+    - "Droit"
+    - "Droit Privé"
+    - "Droit Public"
+    - "Sciences Economiques et de Gestion (Tronc commun)"
