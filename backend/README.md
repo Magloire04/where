@@ -30,7 +30,11 @@ pas besoin.
 
 ## API
 Base : `/api/v1`. Enveloppe de réponse standard ASIN `{ "data": … }` / erreurs
-`{ "error": { "code", "message", "status" } }`. Contrat : `openapi.yaml`.
+`{ "error": { "code", "message", "status" } }`.
+
+**Documentation** : la racine `/` redirige vers `/docs.html` (Redoc auto-hébergé)
+qui affiche le contrat. Contrat OpenAPI servi et versionné :
+`src/main/resources/static/openapi.yaml` (accessible sur `/openapi.yaml`).
 
 ## OCR du relevé
 `POST /api/v1/releves` (multipart `fichier`) extrait matière/note/coefficient via
