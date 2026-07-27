@@ -67,23 +67,23 @@ function App() {
 
   return (
     <>
-      <header className="masthead">
-        <div className="masthead__inner">
-          <span className="masthead__title">Après mon bac</span>
-          <span className="masthead__sub">Estime tes chances de bourse par filière — Bénin</span>
+      <header className="hero">
+        <div className="hero__inner">
+          <div className="brand">
+            <span className="brand__dot" aria-hidden="true" /> Après mon bac
+          </div>
+          <h1 className="hero__title">
+            Trouve la filière où tu as le plus de chances d'être <em>boursier</em>.
+          </h1>
+          <p className="hero__sub">
+            Renseigne ta série et tes notes : on calcule ta moyenne de classement par filière et on
+            te propose les 3 meilleures cotes, avec ton statut estimé.
+          </p>
         </div>
       </header>
 
       <main className="container">
-        <div className="intro">
-          <h1>Quelle filière te donne le plus de chances d'être boursier&nbsp;?</h1>
-          <p>
-            Renseigne ta série et tes notes : on calcule ta moyenne de classement par filière et on
-            te propose les 3 meilleures cotes, avec ton statut estimé (boursier, aide, payant).
-          </p>
-        </div>
-
-        <section className="panel" aria-label="Ton profil">
+        <section className="card card--float" aria-label="Ton profil">
           <div className="field">
             <label htmlFor="serie">Série du bac</label>
             <select
@@ -103,10 +103,10 @@ function App() {
 
           <div className="field">
             <label>Tes notes</label>
-            <div className="tabs" role="tablist" aria-label="Mode de saisie des notes">
+            <div className="seg" role="tablist" aria-label="Mode de saisie des notes">
               <button
                 type="button"
-                className="tab"
+                className="seg__btn"
                 role="tab"
                 aria-selected={mode === "manuel"}
                 onClick={() => setMode("manuel")}
@@ -115,7 +115,7 @@ function App() {
               </button>
               <button
                 type="button"
-                className="tab"
+                className="seg__btn"
                 role="tab"
                 aria-selected={mode === "upload"}
                 onClick={() => setMode("upload")}
@@ -140,7 +140,7 @@ function App() {
           <div className="actions">
             <button
               type="button"
-              className="btn btn--primary"
+              className="btn btn--primary btn--lg"
               onClick={calculer}
               disabled={chargement}
             >
@@ -157,8 +157,8 @@ function App() {
         {resultats && <Resultats data={resultats} />}
       </main>
 
-      <footer className="site-footer">
-        <div className="site-footer__inner">
+      <footer className="footer">
+        <div className="footer__inner">
           Données : Guide d'orientation MESRS 2025-2026 (216 filières publiques). Aucune donnée
           personnelle n'est conservée : tes notes et ton relevé sont traités le temps du calcul,
           puis oubliés.
