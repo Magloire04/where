@@ -1,8 +1,14 @@
 server:
   port: 8080
+  tomcat:
+    max-swallow-size: 30MB
 spring:
   application:
     name: orientation-backend
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 20MB
 
 ocr:
   tessdata-path: ${OCR_TESSDATA_PATH:}
