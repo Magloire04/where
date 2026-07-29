@@ -26,6 +26,35 @@ paths:
                     items:
                       type: string
                     example: ["A1", "A2", "B", "C", "D", "E", "G1", "G2", "G3"]
+  /series/{serie}/matieres:
+    get:
+      summary: Matières à pré-afficher pour une série (coefficients pré-remplis pour C et D)
+      operationId: listerMatieresParSerie
+      parameters:
+        - name: serie
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "D"
+      responses:
+        "200":
+          description: Matières de la série
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/MatiereSerie"
+        "400":
+          description: Série inconnue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /recommandations:
     post:
       summary: Calcule les recommandations d'orientation pour un profil
@@ -69,6 +98,20 @@ components:
         coefficient:
           type: number
           minimum: 0
+          example: 4
+    MatiereSerie:
+      type: object
+      required: [code, libelle]
+      properties:
+        code:
+          type: string
+          example: "MATHS"
+        libelle:
+          type: string
+          example: "Mathématiques"
+        coefficient:
+          type: integer
+          nullable: true
           example: 4
     RecommandationRequest:
       type: object
