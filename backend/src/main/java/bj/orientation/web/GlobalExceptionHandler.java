@@ -37,4 +37,11 @@ public class GlobalExceptionHandler {
         "Fichier trop volumineux (max 15 Mo). Réduis la taille de la photo ou saisis tes notes à la main.",
         HttpStatus.PAYLOAD_TOO_LARGE.value());
   }
+
+  @ExceptionHandler(IllegalArgumentException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ApiErrorResponse onArgumentInvalide(IllegalArgumentException exception) {
+    return ApiErrorResponse.of(
+        "SERIE_INVALIDE", "Série inconnue.", HttpStatus.BAD_REQUEST.value());
+  }
 }

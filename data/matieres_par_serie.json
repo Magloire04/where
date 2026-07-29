@@ -1,0 +1,115 @@
+{
+  "titre": "Matières par série du bac (Bénin) — pré-affichage du formulaire de saisie",
+  "source": "Séries : Office du Baccalauréat du Bénin. Coefficients C et D : Guide d'orientation MESRS 2025-2026 (seuls officiellement publiés). Autres coefficients : à saisir depuis le relevé.",
+  "series": {
+    "A1": [
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "PHILO", "libelle": "Philosophie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null },
+      { "code": "ESP", "libelle": "Espagnol", "coefficient": null },
+      { "code": "ALL", "libelle": "Allemand", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null },
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null }
+    ],
+    "A2": [
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "PHILO", "libelle": "Philosophie", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null },
+      { "code": "ESP", "libelle": "Espagnol", "coefficient": null },
+      { "code": "ALL", "libelle": "Allemand", "coefficient": null },
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null }
+    ],
+    "B": [
+      { "code": "ECO", "libelle": "Économie", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null },
+      { "code": "PHILO", "libelle": "Philosophie", "coefficient": null },
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "C": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": 6 },
+      { "code": "PCT", "libelle": "PCT", "coefficient": 5 },
+      { "code": "SVT", "libelle": "SVT", "coefficient": 2 },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "PHILO", "libelle": "Philosophie", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "D": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": 4 },
+      { "code": "PCT", "libelle": "PCT", "coefficient": 4 },
+      { "code": "SVT", "libelle": "SVT", "coefficient": 5 },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "PHILO", "libelle": "Philosophie", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "E": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "F1": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "F2": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "F3": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "F4": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "G1": [
+      { "code": "EDC", "libelle": "Étude de cas", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ECO", "libelle": "Économie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null },
+      { "code": "HG", "libelle": "Histoire-Géographie", "coefficient": null }
+    ],
+    "G2": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "EDC", "libelle": "Étude de cas", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ECO", "libelle": "Économie", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "G3": [
+      { "code": "EDC", "libelle": "Étude de cas", "coefficient": null },
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "DT": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "FR", "libelle": "Français", "coefficient": null },
+      { "code": "ANG", "libelle": "Anglais", "coefficient": null }
+    ],
+    "DEAT": [
+      { "code": "SVT", "libelle": "SVT", "coefficient": null },
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null }
+    ],
+    "EA": [
+      { "code": "MATHS", "libelle": "Mathématiques", "coefficient": null },
+      { "code": "PCT", "libelle": "PCT", "coefficient": null },
+      { "code": "SVT", "libelle": "SVT", "coefficient": null }
+    ]
+  }
+}
