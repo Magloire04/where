@@ -1,6 +1,6 @@
 # Dataset — Filières & allocations (Guide d'orientation 2025-2026, MESRS Bénin)
 
-Données extraites du PDF officiel `Guide d'orientation.pdf` (98 pages, rendu page→image puis lecture, quotas vérifiés visuellement).
+Données extraites du PDF officiel `QuideOrientation2025-2026.pdf` — édition MESRS **2025-2026**, 98 pages (rendu page→image puis lecture, quotas vérifiés visuellement). Ce fichier est **identique** à `Guide d'orientation.pdf` présent aussi à la racine (même taille et même empreinte SHA-256 `bc2fa334…266a8c5`) : il s'agit du même guide sous deux noms. Dataset donc **confirmé** sur l'édition 2025-2026, sans ré-extraction nécessaire.
 
 ## Contenu
 
