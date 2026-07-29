@@ -1,4 +1,4 @@
-import type { LigneReleve, NoteSaisie, RecommandationResponse } from "../types";
+import type { MatiereSerie, NoteSaisie, RecommandationResponse } from "../types";
 
 const BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080/api/v1";
 
@@ -19,6 +19,10 @@ export async function chargerSeries(): Promise<string[]> {
   return lire<string[]>(await fetch(`${BASE}/series`));
 }
 
+export async function chargerMatieres(serie: string): Promise<MatiereSerie[]> {
+  return lire<MatiereSerie[]>(await fetch(`${BASE}/series/${encodeURIComponent(serie)}/matieres`));
+}
+
 export async function recommander(
   serie: string,
   notes: NoteSaisie[],
@@ -29,10 +33,4 @@ export async function recommander(
     body: JSON.stringify({ serie, notes }),
   });
   return lire<RecommandationResponse>(reponse);
-}
-
-export async function extraireReleve(fichier: File): Promise<LigneReleve[]> {
-  const formulaire = new FormData();
-  formulaire.append("fichier", fichier);
-  return lire<LigneReleve[]>(await fetch(`${BASE}/releves`, { method: "POST", body: formulaire }));
 }

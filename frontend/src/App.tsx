@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
-import { chargerSeries, recommander } from "./api/client";
+import { chargerMatieres, chargerSeries, recommander } from "./api/client";
 import { NotesTable } from "./components/NotesTable";
-import { ReleveUpload } from "./components/ReleveUpload";
 import { Resultats } from "./components/Resultats";
 import type { NoteSaisie, RangNote, RecommandationResponse } from "./types";
-
-const LIGNE_VIDE: RangNote = { libelle: "", note: "", coefficient: "" };
 
 function App() {
   const [series, setSeries] = useState<string[]>([]);
   const [serie, setSerie] = useState("");
-  const [mode, setMode] = useState<"manuel" | "upload">("manuel");
-  const [lignes, setLignes] = useState<RangNote[]>([
-    { ...LIGNE_VIDE },
-    { ...LIGNE_VIDE },
-    { ...LIGNE_VIDE },
-  ]);
+  const [lignes, setLignes] = useState<RangNote[]>([]);
   const [chargement, setChargement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
   const [resultats, setResultats] = useState<RecommandationResponse | null>(null);
@@ -25,6 +17,28 @@ function App() {
       .then(setSeries)
       .catch(() => setSeries([]));
   }, []);
+
+  async function choisirSerie(nouvelleSerie: string) {
+    setSerie(nouvelleSerie);
+    setResultats(null);
+    setErreur(null);
+    if (!nouvelleSerie) {
+      setLignes([]);
+      return;
+    }
+    try {
+      const matieres = await chargerMatieres(nouvelleSerie);
+      setLignes(
+        matieres.map((m) => ({
+          libelle: m.libelle,
+          note: "",
+          coefficient: m.coefficient != null ? String(m.coefficient) : "",
+        })),
+      );
+    } catch {
+      setLignes([{ libelle: "", note: "", coefficient: "" }]);
+    }
+  }
 
   function notesValides(): NoteSaisie[] {
     return lignes
@@ -52,7 +66,7 @@ function App() {
     }
     const notes = notesValides();
     if (notes.length === 0) {
-      setErreur("Ajoute au moins une matière avec une note (0–20) et un coefficient.");
+      setErreur("Saisis au moins une note (0–20) avec son coefficient.");
       return;
     }
     setChargement(true);
@@ -76,8 +90,8 @@ function App() {
             Trouve la filière où tu as le plus de chances d'être <em>boursier</em>.
           </h1>
           <p className="hero__sub">
-            Renseigne ta série et tes notes : on calcule ta moyenne de classement par filière et on
-            te propose les 3 meilleures cotes, avec ton statut estimé.
+            Choisis ta série : les matières s'affichent automatiquement. Tu n'as plus qu'à saisir
+            tes notes — on calcule ta moyenne de classement par filière et les 3 meilleures cotes.
           </p>
         </div>
       </header>
@@ -90,9 +104,9 @@ function App() {
               id="serie"
               className="select-serie"
               value={serie}
-              onChange={(e) => setSerie(e.target.value)}
+              onChange={(e) => choisirSerie(e.target.value)}
             >
-              <option value="">— choisis —</option>
+              <option value="">— choisis ta série —</option>
               {series.map((s) => (
                 <option key={s} value={s}>
                   {s}
@@ -101,48 +115,23 @@ function App() {
             </select>
           </div>
 
-          <div className="field">
-            <label>Tes notes</label>
-            <div className="seg" role="tablist" aria-label="Mode de saisie des notes">
-              <button
-                type="button"
-                className="seg__btn"
-                role="tab"
-                aria-selected={mode === "manuel"}
-                onClick={() => setMode("manuel")}
-              >
-                Saisie manuelle
-              </button>
-              <button
-                type="button"
-                className="seg__btn"
-                role="tab"
-                aria-selected={mode === "upload"}
-                onClick={() => setMode("upload")}
-              >
-                Téléverser le relevé
-              </button>
+          {serie && (
+            <div className="field">
+              <label>Tes notes</label>
+              <NotesTable lignes={lignes} onChange={setLignes} />
+              <p className="hint">
+                Les matières de la série {serie} sont pré-affichées : saisis chaque note /20. Les
+                coefficients figurent sur ton relevé (déjà remplis pour les séries C et D).
+              </p>
             </div>
-            {mode === "upload" && (
-              <ReleveUpload
-                onExtrait={(nouvelles) => {
-                  if (nouvelles.length > 0) setLignes(nouvelles);
-                  setMode("manuel");
-                }}
-              />
-            )}
-            <NotesTable lignes={lignes} onChange={setLignes} />
-            <p className="hint">
-              Indique la note /20 et le coefficient de chaque matière (ils figurent sur ton relevé).
-            </p>
-          </div>
+          )}
 
           <div className="actions">
             <button
               type="button"
               className="btn btn--primary btn--lg"
               onClick={calculer}
-              disabled={chargement}
+              disabled={chargement || !serie}
             >
               {chargement ? "Calcul…" : "Voir mes chances"}
             </button>
@@ -160,8 +149,7 @@ function App() {
       <footer className="footer">
         <div className="footer__inner">
           Données : Guide d'orientation MESRS 2025-2026 (216 filières publiques). Aucune donnée
-          personnelle n'est conservée : tes notes et ton relevé sont traités le temps du calcul,
-          puis oubliés.
+          personnelle n'est conservée : tes notes sont traitées le temps du calcul, puis oubliées.
         </div>
       </footer>
     </>

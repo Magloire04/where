@@ -43,9 +43,10 @@ export interface NoteSaisie {
   coefficient: number;
 }
 
-export interface LigneReleve {
+/** Matière pré-affichée pour une série (coefficient null = à saisir depuis le relevé). */
+export interface MatiereSerie {
+  code: string;
   libelle: string;
-  note: number | null;
   coefficient: number | null;
 }
 
