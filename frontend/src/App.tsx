@@ -87,11 +87,12 @@ function App() {
             <span className="brand__dot" aria-hidden="true" /> Après mon bac
           </div>
           <h1 className="hero__title">
-            Trouve la filière où tu as le plus de chances d'être <em>boursier</em>.
+            Trouve la filière où tu as le plus de chances d'être <em>boursier ou aidé</em>.
           </h1>
           <p className="hero__sub">
             Choisis ta série : les matières s'affichent automatiquement. Tu n'as plus qu'à saisir
-            tes notes — on calcule ta moyenne de classement par filière et les 3 meilleures cotes.
+            tes notes — on calcule ta moyenne de classement par filière et on classe tes meilleures
+            chances d'allocation (bourse ou aide).
           </p>
         </div>
       </header>
@@ -130,8 +131,10 @@ function App() {
               </label>
               <NotesTable lignes={lignes} onChange={setLignes} />
               <p className="hint">
-                Les matières de la série {serie} sont pré-affichées : saisis chaque note /20. Les
-                coefficients figurent sur ton relevé (déjà remplis pour les séries C et D).
+                Les matières de la série {serie} sont pré-affichées. Pour qu'une filière soit
+                estimée, saisis <b>chaque matière qu'elle demande</b> avec sa note /20{" "}
+                <b>et son coefficient</b> (indiqué sur ton relevé ; déjà rempli pour les séries C et
+                D). Les filières auxquelles il manque une note apparaîtront dans « À compléter ».
               </p>
             </div>
           )}

@@ -40,9 +40,31 @@ class RecommenderTest {
             new NoteSaisie("SVT", 17, 5)), null);
         RecommandationResponse resp = build().recommander(req);
         assertThat(resp.top3()).isNotEmpty().hasSizeLessThanOrEqualTo(3);
-        var scores = resp.top3().stream()
-            .map(r -> r.proba().pBourse() + 0.5 * r.proba().pAide()).toList();
-        assertThat(scores).isSortedAccordingTo((a, b) -> Double.compare(b, a));
+    }
+
+    @Test
+    void resultatsClassesParChanceAllocation() {
+        var req = new RecommandationRequest("D", List.of(
+            new NoteSaisie("Maths", 14, 4),
+            new NoteSaisie("PCT", 13, 4),
+            new NoteSaisie("SVT", 15, 5)), null);
+        RecommandationResponse resp = build().recommander(req);
+        // Bourse OU aide : le classement suit la probabilité d'obtenir une allocation.
+        var chances = java.util.stream.Stream.concat(
+                resp.top3().stream(), resp.alternatives().stream())
+            .map(r -> r.proba().pBourse() + r.proba().pAide()).toList();
+        assertThat(chances).isSortedAccordingTo((a, b) -> Double.compare(b, a));
+    }
+
+    @Test
+    void serieF3ProduitDesEstimations() {
+        // F3 accepte des filières de classement résolues en {Français, Maths, PCT}.
+        var req = new RecommandationRequest("F3", List.of(
+            new NoteSaisie("Maths", 14, 3),
+            new NoteSaisie("PCT", 13, 3),
+            new NoteSaisie("Français", 12, 2)), null);
+        RecommandationResponse resp = build().recommander(req);
+        assertThat(resp.top3()).isNotEmpty();
     }
 
     @Test
