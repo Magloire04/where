@@ -1,59 +1,70 @@
-# Dataset — Filières & allocations (Guide d'orientation 2025-2026, MESRS Bénin)
+# Dataset — Filières & allocations (Guide d'orientation 2026-2027, MESRS Bénin)
 
-Données extraites du PDF officiel `QuideOrientation2025-2026.pdf` — édition MESRS **2025-2026**, 98 pages (rendu page→image puis lecture, quotas vérifiés visuellement). Ce fichier est **identique** à `Guide d'orientation.pdf` présent aussi à la racine (même taille et même empreinte SHA-256 `bc2fa334…266a8c5`) : il s'agit du même guide sous deux noms. Dataset donc **confirmé** sur l'édition 2025-2026, sans ré-extraction nécessaire.
+Données extraites du PDF officiel `GuideOrientation2026-2027.pdf` — « Guido », Guide d'information universitaire MESRS **2026-2027**, 92 pages (extraction texte `pdftotext -layout`, quotas et matières relus ligne à ligne). C'est la **nouvelle édition** fournie par le MESRS ; elle remplace l'édition 2025-2026 (`QuideOrientation2025-2026.pdf` / `Guide d'orientation.pdf`, conservés à la racine à titre d'archive).
 
 ## Contenu
 
 | Fichier | Contenu | Volume |
 |---|---|---|
-| `raw/uac.json` | Université d'Abomey-Calavi (UAC) | 115 filières |
-| `raw/parakou.json` | Université de Parakou (UP) | 33 filières |
-| `raw/unstim.json` | Univ. Nat. des Sciences, Technologies, Ingénierie et Maths (UNSTIM) | 38 filières |
+| `raw/uac.json` | Université d'Abomey-Calavi (UAC) | 121 filières |
+| `raw/parakou.json` | Université de Parakou (UP) | 34 filières |
+| `raw/unstim.json` | Univ. Nat. des Sciences, Technologies, Ingénierie et Maths (UNSTIM) | 39 filières |
 | `raw/una.json` | Université Nationale d'Agriculture (UNA) | 15 filières |
-| `raw/autres_publics.json` | IUEP, Écoles Inter-États, UADC, Sèmè City | 15 entrées |
+| `raw/autres_publics.json` | UADC, IUEP, Sèmè City, Écoles Inter-États | 15 entrées |
 | `raw/epes_agrees.json` | EPES privés — filières agréées (référence, sans quota) | 39 établissements, 199 offres |
 | `coefficients.json` | Grille de coefficients par série (⚠️ incomplète — voir plus bas) | — |
 
-**Total filières publiques (avec quotas) : 216** — dont 8 « à titre payant » (UADC, Sèmè City) sans bourse.
+**Total filières publiques (avec quotas) : 224.**
 
 ## Statistiques (validation)
 
-- **6 989 bourses** au total (chiffre officiel rapporté : ~6 900 ✅)
-- **11 853 places d'aide/FPP** (chiffre officiel rapporté : ~11 800 ✅)
-- **166 filières à 0 place d'aide/FPP** → sélection binaire « boursier OU entièrement payant »
-- **38 filières avec coussin d'aide** (ex. FASEG Sciences Éco 207 bourses / 1407 aides ; FADESP Droit 104 / 999)
-- Modes d'entrée : 166 Classement · 42 Concours · 8 à titre payant
+- **4 912 bourses** au total
+- **7 292 places d'aide/FPP**
+- **60 filières à 0 place d'aide/FPP** → sélection binaire « boursier OU entièrement payant »
+- **164 filières avec coussin d'aide** (ex. FASEG Sciences Éco 10 bourses / 700 aides ; FADESP Droit 0 / 500)
+- Modes d'entrée : 180 Classement · 42 Concours · 2 Dossier (Sèmè City)
+
+## Nouveautés de l'édition 2026-2027 (vs 2025-2026)
+
+- **224 offres** (contre 216) et réorganisation des sections : l'UADC devient une université à part
+  entière (section V), l'UAC est renumérotée de 1 à 27 établissements.
+- **Quotas révisés** : ex. Médecine Générale **95/20** (au lieu de 150/0), Droit FADESP **0/500**.
+- **Format « matières par série » explicite** : le guide donne désormais, pour chaque filière, les
+  matières écrites **groupées par série** (ex. `C, D : Maths, PCT, SVT`). `matieres_raw` reproduit ce
+  format ; `MatiereResolver` sélectionne la clause de la série de l'élève.
 
 ## Schéma d'une filière (fichiers universités)
 
 ```json
 {
-  "num": 17,
+  "num": 13,
   "etablissement": "Faculté des Sciences de la Santé (FSS)",
   "filiere": "Médecine Générale",
-  "quota_bourse": 150,          // nb de bourses (int)
-  "quota_aide_fpp": 0,          // nb de places aide/FPP (int) — 0 = pas de coussin
-  "mode_entree": "Classement",  // "Classement" | "Concours" | "A titre payant"
+  "quota_bourse": 95,           // nb de bourses (int)
+  "quota_aide_fpp": 20,         // nb de places aide/FPP (int) — 0 = pas de coussin
+  "mode_entree": "Classement",  // "Classement" | "Concours" | "Dossier"
   "series_bac_raw": "C, D",     // séries acceptées (verbatim)
-  "matieres_raw": "Maths / PCT / SVT", // 3 matières de calcul (verbatim, avec conditions par série)
+  "matieres_raw": "C, D : Maths, PCT, SVT", // matières par série (verbatim, clauses séparées par « | »)
   "debouches": ["Médecin généraliste", "..."],
-  "page": 31                    // page du guide (traçabilité)
+  "page": 9                     // page du guide (traçabilité)
 }
 ```
 
-`matieres_raw` conserve le texte du guide, y compris les substitutions conditionnelles par série
-(ex. `"Maths (LV1 pour A et Economie pour B) / Français / Hist-Géo"`). Un parsing structuré
-`matieres[serie] = [m1, m2, m3]` reste à dériver pour l'automatisation du calcul.
+`matieres_raw` conserve le texte du guide, groupé par série et séparé par « | »
+(ex. `"DEAT/Foresterie, DEAT/PV : Les trois (03) matières écrites | C, D : Maths, PCT, SVT"`).
+`MatiereResolver.resoudre(matieres_raw, serie)` choisit la clause dont le préfixe contient la série,
+puis canonicalise chaque libellé via `SubjectDictionary`.
 
 ## ⚠️ Limites & pièces manquantes (à traiter avant la mise en production)
 
-1. **Grille de coefficients incomplète** (`coefficients.json`). Le guide ne publie que 2 exemples
-   (Médecine séries C et D). La grille officielle complète (matière × série) doit être obtenue
-   auprès de l'**Office du Baccalauréat**. C'est le blocage n°1 pour un calcul exact.
+1. **Grille de coefficients incomplète** (`coefficients.json`). Le guide ne publie que les triplets
+   scientifiques des séries **C** et **D** (Maths/PCT/SVT). La grille officielle complète
+   (matière × série) doit être obtenue auprès de l'**Office du Baccalauréat**. C'est le blocage n°1
+   pour un calcul exact ; les coefficients ne sont pré-remplis que pour C et D.
 2. **Aucune moyenne de coupure historique** par filière (le guide n'en contient pas). Le
-   « % de chance » devra être un **estimateur** (heuristique quotas + sélectivité + mentions),
-   ou s'appuyer sur les compteurs live d'apresmonbac pendant la fenêtre de choix. Ce n'est PAS une garantie.
+   « % de chance » est un **estimateur** (heuristique quotas + sélectivité + mentions), pas une garantie.
 3. **EPES agréés sans quotas** : le guide ne donne ni quota, ni série, ni matière pour le privé
    agréé — seulement établissement + offres. Non exploitable pour le moteur de bourse (référence uniquement).
-4. **EPES « régime ouverture » (pages 82-98) non extraits** (hors périmètre, entièrement payants — phase 2).
-5. Édition **2025-2026** (l'édition 2026-2027 n'était pas publiée à la date de l'extraction).
+4. **Séries techniques/agricoles** (F, DT, DEAT, EA) : `matieres_raw` indique souvent « Les trois (03)
+   matières écrites » (non résoluble automatiquement) → non calculées ; le champ « + Ajouter une
+   matière » de l'interface sert de filet.

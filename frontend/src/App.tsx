@@ -158,7 +158,7 @@ function App() {
 
       <footer className="footer">
         <div className="footer__inner">
-          Données : Guide d'orientation MESRS 2025-2026 (216 filières publiques). Aucune donnée
+          Données : Guide d'orientation MESRS 2026-2027 (224 filières publiques). Aucune donnée
           personnelle n'est conservée : tes notes sont traitées le temps du calcul, puis oubliées.
         </div>
       </footer>

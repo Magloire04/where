@@ -9,16 +9,16 @@ class FiliereRepositoryTest {
     private final FiliereRepository repo = new FiliereRepository();
 
     @Test
-    void chargeLes216FilieresPubliques() {
-        assertThat(repo.toutes()).hasSize(216);
+    void chargeLes224FilieresPubliques() {
+        assertThat(repo.toutes()).hasSize(224);
     }
 
     @Test
-    void medecineGeneraleEstPresenteAvec150Bourses() {
+    void medecineGeneraleEstPresenteAvec95Bourses() {
         var medecine = repo.toutes().stream()
             .filter(f -> f.filiere().equals("Médecine Générale"))
             .findFirst().orElseThrow();
-        assertThat(medecine.quotaBourse()).isEqualTo(150);
+        assertThat(medecine.quotaBourse()).isEqualTo(95);
         assertThat(medecine.modeEntree()).isEqualTo(ModeEntree.CLASSEMENT);
     }
 }
