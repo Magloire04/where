@@ -7,6 +7,7 @@ import bj.orientation.model.Filiere;
 import bj.orientation.model.ModeEntree;
 import bj.orientation.model.Palier;
 import bj.orientation.model.Probabilites;
+import bj.orientation.model.StatutEstime;
 import java.util.List;
 import java.util.Map;
 import org.assertj.core.data.Offset;
@@ -51,5 +52,23 @@ class ProbabilityEstimatorTest {
     void pBourseEstBornee() {
         assertThat(estimator.estimer(filiere("Médecine Générale", 150, 0), 20).pBourse()).isLessThanOrEqualTo(0.98);
         assertThat(estimator.estimer(filiere("Médecine Générale", 150, 0), 2).pBourse()).isGreaterThanOrEqualTo(0.02);
+    }
+
+    @Test
+    void pBourseNulleQuandAucuneBourse() {
+        assertThat(estimator.estimer(filiere("Info documentaire", 0, 15), 18).pBourse()).isEqualTo(0.0);
+    }
+
+    @Test
+    void jamaisBoursierQuandZeroBourse() {
+        Probabilites p = estimator.estimer(filiere("Info documentaire", 0, 15), 18);
+        assertThat(p.statut()).isEqualTo(StatutEstime.AIDE);
+    }
+
+    @Test
+    void payantQuandNiBourseNiAide() {
+        Probabilites p = estimator.estimer(filiere("Filière sans allocation", 0, 0), 18);
+        assertThat(p.statut()).isEqualTo(StatutEstime.PAYANT);
+        assertThat(p.pPayant()).isEqualTo(1.0);
     }
 }
