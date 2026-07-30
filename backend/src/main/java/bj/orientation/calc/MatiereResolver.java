@@ -46,14 +46,16 @@ public class MatiereResolver {
         String[] clauses = raw.split("\\|");
         String defaut = null;
         for (String clause : clauses) {
-            String bas = clause.toLowerCase();
-            int idx = bas.indexOf(':');
-            if (idx > 0 && bas.substring(0, idx).contains("pour")) {
-                String prefixe = " " + bas.substring(0, idx).toUpperCase().replaceAll("[^A-Z0-9]", " ") + " ";
+            int idx = clause.indexOf(':');
+            if (idx > 0) {
+                // Clause préfixée par une (des) série(s), ex. "C, D : ..." ou "Pour DEAT: ...".
+                String prefixe =
+                    " " + clause.substring(0, idx).toUpperCase().replaceAll("[^A-Z0-9]", " ") + " ";
                 if (prefixe.contains(" " + code + " ")) {
-                    return clause.substring(clause.indexOf(':') + 1);
+                    return clause.substring(idx + 1);
                 }
             } else if (defaut == null) {
+                // Clause sans préfixe de série : liste de matières applicable par défaut.
                 defaut = clause;
             }
         }
