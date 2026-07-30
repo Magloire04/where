@@ -19,7 +19,11 @@ import org.springframework.stereotype.Component;
 /** Orchestre la recommandation : éligibilité, calcul, estimation, classement hybride. */
 @Component
 public class Recommender {
-    private static final double POIDS_AIDE = 0.5;
+    // Classement par chance d'obtenir une allocation (bourse OU aide), la bourse départageant.
+    private static final Comparator<Recommandation> PAR_CHANCE_ALLOCATION =
+        Comparator.comparingDouble((Recommandation r) -> r.proba().pBourse() + r.proba().pAide())
+            .thenComparingDouble(r -> r.proba().pBourse())
+            .reversed();
 
     private final FiliereRepository repo;
     private final SerieMatcher serieMatcher;
@@ -69,16 +73,12 @@ public class Recommender {
             }
         }
 
-        scorables.sort(Comparator.comparingDouble(this::score).reversed());
+        scorables.sort(PAR_CHANCE_ALLOCATION);
         List<Recommandation> top3 = new ArrayList<>(scorables.subList(0, Math.min(3, scorables.size())));
         List<Recommandation> alternatives = new ArrayList<>(
             scorables.subList(Math.min(3, scorables.size()), Math.min(8, scorables.size())));
 
         return new RecommandationResponse(top3, alternatives, concours, payantes, insuffisantes);
-    }
-
-    private double score(Recommandation reco) {
-        return reco.proba().pBourse() + POIDS_AIDE * reco.proba().pAide();
     }
 
     private List<MatiereNote> normaliser(List<NoteSaisie> saisies) {
