@@ -99,7 +99,12 @@ function App() {
       <main className="container">
         <section className="card card--float" aria-label="Ton profil">
           <div className="field">
-            <label htmlFor="serie">Série du bac</label>
+            <label htmlFor="serie" className="field__lab">
+              <span className="step" aria-hidden="true">
+                1
+              </span>{" "}
+              Ta série de bac
+            </label>
             <select
               id="serie"
               className="select-serie"
@@ -117,7 +122,12 @@ function App() {
 
           {serie && (
             <div className="field">
-              <label>Tes notes</label>
+              <label className="field__lab">
+                <span className="step" aria-hidden="true">
+                  2
+                </span>{" "}
+                Tes notes
+              </label>
               <NotesTable lignes={lignes} onChange={setLignes} />
               <p className="hint">
                 Les matières de la série {serie} sont pré-affichées : saisis chaque note /20. Les
