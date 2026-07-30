@@ -26,7 +26,11 @@ public class ProbabilityEstimator {
         EstimateurProperties.Seuils seuils = props.paliers().get(palier);
         double sigma = props.sigma();
 
-        double pBourse = clamp(logistique((moyenne - seuils.bourse()) / sigma), BORNE_MIN, BORNE_MAX);
+        // Pas de bourse octroyée dans cette filière => impossible d'être boursier.
+        double pBourse = 0.0;
+        if (filiere.quotaBourse() > 0) {
+            pBourse = clamp(logistique((moyenne - seuils.bourse()) / sigma), BORNE_MIN, BORNE_MAX);
+        }
 
         double pAide = 0.0;
         if (filiere.quotaAideFpp() > 0) {
