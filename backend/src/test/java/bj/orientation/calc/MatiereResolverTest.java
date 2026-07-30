@@ -31,4 +31,15 @@ class MatiereResolverTest {
         assertThat(resolver.resoudre("Maths ou Etude de Cas (G) / Français / Anglais", "D"))
             .containsExactly("MATHS", "FR", "ANG");
     }
+
+    @Test
+    void nouveauFormatParSerieChoisitLaBonneSerie() {
+        String raw =
+            "EA : Assainissement, Mobilisation des ressources en eau, PCT "
+                + "| B : Economie, Hist-Géo, SVT "
+                + "| A1, A2 : Hist-Géo, LV1, SVT "
+                + "| C, D : Hist-Géo, PCT, SVT";
+        assertThat(resolver.resoudre(raw, "D")).containsExactly("HG", "PCT", "SVT");
+        assertThat(resolver.resoudre(raw, "B")).containsExactly("ECO", "HG", "SVT");
+    }
 }
