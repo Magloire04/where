@@ -1,4 +1,5 @@
 import type { Recommandation } from "../types";
+import { libelleMatiere } from "../utils/matieres";
 import { classeStatut, libelleStatut } from "../utils/statut";
 import { Breakdown } from "./Breakdown";
 import { Gauge } from "./Gauge";
@@ -24,6 +25,16 @@ export function ResultatCard({ reco, rang }: { reco: Recommandation; rang: numbe
 
       <div className="reco__statut">
         <span className={`pill pill--${classe}`}>{libelleStatut(reco.proba.statut)}</span>
+        {reco.matieresRetenues.length > 0 && (
+          <span className="reco__retenu">
+            Calculé sur
+            {reco.matieresRetenues.map((code) => (
+              <span className="mtag" key={code}>
+                {libelleMatiere(code)}
+              </span>
+            ))}
+          </span>
+        )}
       </div>
 
       <Breakdown proba={reco.proba} />

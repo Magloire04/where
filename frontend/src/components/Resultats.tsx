@@ -45,9 +45,8 @@ export function Resultats({ data }: { data: RecommandationResponse }) {
 
       {data.top3.length === 0 ? (
         <div className="card empty">
-          Aucune filière entièrement calculable avec les notes saisies. Complète les matières
-          demandées (avec leur coefficient) — les filières concernées, et celles recrutant sur
-          concours, sont listées ci-dessous.
+          Aucune filière ne calcule son classement sur au moins 2 de tes 3 matières fortes. Essaie
+          d'autres matières fortes, ou regarde les filières accessibles sur concours ci-dessous.
         </div>
       ) : (
         data.top3.map((reco, i) => (

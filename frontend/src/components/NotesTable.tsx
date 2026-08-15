@@ -1,17 +1,27 @@
-import type { RangNote } from "../types";
+import type { MatiereSerie, RangNote } from "../types";
 
 interface Props {
   lignes: RangNote[];
   onChange: (lignes: RangNote[]) => void;
+  /** Si fourni : la matière se choisit dans la liste de la série et le coefficient est pré-rempli. */
+  options?: MatiereSerie[];
+  /** Nombre maximum de lignes (ex. 3 matières fortes). */
+  max?: number;
 }
 
 /**
- * Notes en cartes-lignes sur mobile (matière au-dessus, note + coef + suppression en dessous)
- * qui se réalignent en une seule ligne sur écran large.
+ * Saisie des matières fortes en cartes-lignes sur mobile (matière au-dessus, note + coef en dessous)
+ * qui se réalignent sur une ligne en écran large. Avec `options`, la matière devient une liste
+ * déroulante propre à la série et le coefficient officiel (C/D) se remplit tout seul.
  */
-export function NotesTable({ lignes, onChange }: Props) {
+export function NotesTable({ lignes, onChange, options, max }: Props) {
   function modifier(index: number, champ: keyof RangNote, valeur: string) {
     onChange(lignes.map((l, i) => (i === index ? { ...l, [champ]: valeur } : l)));
+  }
+  function choisirMatiere(index: number, libelle: string) {
+    const opt = options?.find((o) => o.libelle === libelle);
+    const coefficient = opt && opt.coefficient != null ? String(opt.coefficient) : "";
+    onChange(lignes.map((l, i) => (i === index ? { ...l, libelle, coefficient } : l)));
   }
   function supprimer(index: number) {
     onChange(lignes.filter((_, i) => i !== index));
@@ -20,19 +30,39 @@ export function NotesTable({ lignes, onChange }: Props) {
     onChange([...lignes, { libelle: "", note: "", coefficient: "" }]);
   }
 
+  const dejaChoisies = new Set(lignes.map((l) => l.libelle).filter(Boolean));
+  const peutAjouter = max == null || lignes.length < max;
+
   return (
     <div>
       <div className="notes">
         {lignes.map((ligne, index) => (
           <div className="note-row" key={index}>
             <div className="note-row__matiere">
-              <input
-                type="text"
-                aria-label={`Matière ligne ${index + 1}`}
-                placeholder="Matière"
-                value={ligne.libelle}
-                onChange={(e) => modifier(index, "libelle", e.target.value)}
-              />
+              {options ? (
+                <select
+                  aria-label={`Matière forte ${index + 1}`}
+                  value={ligne.libelle}
+                  onChange={(e) => choisirMatiere(index, e.target.value)}
+                >
+                  <option value="">— choisis une matière —</option>
+                  {options
+                    .filter((o) => o.libelle === ligne.libelle || !dejaChoisies.has(o.libelle))
+                    .map((o) => (
+                      <option key={o.code} value={o.libelle}>
+                        {o.libelle}
+                      </option>
+                    ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  aria-label={`Matière ligne ${index + 1}`}
+                  placeholder="Matière"
+                  value={ligne.libelle}
+                  onChange={(e) => modifier(index, "libelle", e.target.value)}
+                />
+              )}
             </div>
             <label className="note-cell note-cell--note">
               <span className="note-cell__lab">Note /20</span>
@@ -70,9 +100,11 @@ export function NotesTable({ lignes, onChange }: Props) {
           </div>
         ))}
       </div>
-      <button type="button" className="btn btn--ghost btn--block notes-ajout" onClick={ajouter}>
-        + Ajouter une matière
-      </button>
+      {peutAjouter && (
+        <button type="button" className="btn btn--ghost btn--block notes-ajout" onClick={ajouter}>
+          + Ajouter une matière
+        </button>
+      )}
     </div>
   );
 }
