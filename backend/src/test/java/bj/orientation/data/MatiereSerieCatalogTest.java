@@ -47,13 +47,23 @@ class MatiereSerieCatalogTest {
   }
 
   @Test
-  void coefficientsScientifiquesConfirmesPourCEtD() {
+  void coefficientsOfficielsCEtD() {
     assertThat(coef(Serie.D, "SVT")).isEqualTo(5);
+    assertThat(coef(Serie.D, "PCT")).isEqualTo(5);
     assertThat(coef(Serie.D, "MATHS")).isEqualTo(4);
-    assertThat(coef(Serie.D, "PCT")).isEqualTo(4);
-    assertThat(coef(Serie.C, "MATHS")).isEqualTo(6);
+    assertThat(coef(Serie.C, "MATHS")).isEqualTo(5);
     assertThat(coef(Serie.C, "PCT")).isEqualTo(5);
     assertThat(coef(Serie.C, "SVT")).isEqualTo(2);
+  }
+
+  @Test
+  void coefficientsOfficielsAutresSeries() {
+    assertThat(coef(Serie.A1, "FR")).isEqualTo(5);
+    assertThat(coef(Serie.A2, "HG")).isEqualTo(5);
+    assertThat(coef(Serie.B, "ECO")).isEqualTo(5);
+    assertThat(coef(Serie.G1, "EDC")).isEqualTo(6);
+    assertThat(coef(Serie.G2, "EDC")).isEqualTo(6);
+    assertThat(coef(Serie.F3, "MATHS")).isEqualTo(4);
   }
 
   /**

@@ -20,9 +20,9 @@ class MetaControllerTest {
     mvc.perform(get("/api/v1/series/D/matieres"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.data").isArray())
-        .andExpect(jsonPath("$.data[0].code").value("MATHS"))
-        .andExpect(jsonPath("$.data[0].libelle").value("Mathématiques"))
-        .andExpect(jsonPath("$.data[0].coefficient").value(4));
+        .andExpect(jsonPath("$.data[0].code").value("SVT"))
+        .andExpect(jsonPath("$.data[0].libelle").value("SVT"))
+        .andExpect(jsonPath("$.data[0].coefficient").value(5));
   }
 
   @Test
