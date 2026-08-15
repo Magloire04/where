@@ -68,6 +68,32 @@ class RecommenderTest {
     }
 
     @Test
+    void chaqueRecoIndiqueLesMatieresRetenues() {
+        var req = new RecommandationRequest("D", List.of(
+            new NoteSaisie("Maths", 15, 4),
+            new NoteSaisie("PCT", 14, 4),
+            new NoteSaisie("SVT", 16, 5)), null);
+        RecommandationResponse resp = build().recommander(req);
+        assertThat(resp.top3()).isNotEmpty();
+        assertThat(resp.top3()).allSatisfy(r ->
+            assertThat(r.matieresRetenues()).hasSizeBetween(2, 3));
+    }
+
+    @Test
+    void filiereExclueSiMoinsDeDeuxMatieresFortesCommunes() {
+        // Matières fortes littéraires : les filières scientifiques (Maths/PCT/SVT) ne matchent pas.
+        var req = new RecommandationRequest("D", List.of(
+            new NoteSaisie("Français", 16, 2),
+            new NoteSaisie("Hist-Géo", 15, 2),
+            new NoteSaisie("Philosophie", 14, 2)), null);
+        RecommandationResponse resp = build().recommander(req);
+        assertThat(resp.top3()).isNotEmpty();
+        var noms = java.util.stream.Stream.concat(resp.top3().stream(), resp.alternatives().stream())
+            .map(r -> r.filiere().filiere()).toList();
+        assertThat(noms).doesNotContain("Médecine Générale");
+    }
+
+    @Test
     void filieresConcoursSontListeesAPart() {
         var req = new RecommandationRequest("D", List.of(
             new NoteSaisie("PCT", 14, 4),

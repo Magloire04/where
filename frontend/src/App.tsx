@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import { chargerMatieres, chargerSeries, recommander } from "./api/client";
 import { NotesTable } from "./components/NotesTable";
 import { Resultats } from "./components/Resultats";
-import type { NoteSaisie, RangNote, RecommandationResponse } from "./types";
+import type { MatiereSerie, NoteSaisie, RangNote, RecommandationResponse } from "./types";
+
+const NB_MATIERES_FORTES = 3;
+const lignesVides = (n: number): RangNote[] =>
+  Array.from({ length: n }, () => ({ libelle: "", note: "", coefficient: "" }));
 
 function App() {
   const [series, setSeries] = useState<string[]>([]);
   const [serie, setSerie] = useState("");
+  const [options, setOptions] = useState<MatiereSerie[]>([]);
   const [lignes, setLignes] = useState<RangNote[]>([]);
   const [chargement, setChargement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
@@ -22,21 +27,15 @@ function App() {
     setSerie(nouvelleSerie);
     setResultats(null);
     setErreur(null);
+    setLignes(lignesVides(NB_MATIERES_FORTES));
     if (!nouvelleSerie) {
-      setLignes([]);
+      setOptions([]);
       return;
     }
     try {
-      const matieres = await chargerMatieres(nouvelleSerie);
-      setLignes(
-        matieres.map((m) => ({
-          libelle: m.libelle,
-          note: "",
-          coefficient: m.coefficient != null ? String(m.coefficient) : "",
-        })),
-      );
+      setOptions(await chargerMatieres(nouvelleSerie));
     } catch {
-      setLignes([{ libelle: "", note: "", coefficient: "" }]);
+      setOptions([]);
     }
   }
 
@@ -65,8 +64,10 @@ function App() {
       return;
     }
     const notes = notesValides();
-    if (notes.length === 0) {
-      setErreur("Saisis au moins une note (0–20) avec son coefficient.");
+    if (notes.length < 2) {
+      setErreur(
+        "Choisis au moins 2 de tes matières fortes, avec leur note (0–20) et leur coefficient.",
+      );
       return;
     }
     setChargement(true);
@@ -87,12 +88,13 @@ function App() {
             <span className="brand__dot" aria-hidden="true" /> Après mon bac
           </div>
           <h1 className="hero__title">
-            Trouve la filière où tu as le plus de chances d'être <em>boursier ou aidé</em>.
+            Tes <em>3 matières fortes</em> te montrent où tu as le plus de chances d'être boursier
+            ou aidé.
           </h1>
           <p className="hero__sub">
-            Choisis ta série : les matières s'affichent automatiquement. Tu n'as plus qu'à saisir
-            tes notes — on calcule ta moyenne de classement par filière et on classe tes meilleures
-            chances d'allocation (bourse ou aide).
+            Choisis ta série, puis tes 3 matières les plus fortes avec leurs notes. On te liste les
+            filières qui calculent leur classement sur ces matières, chacune avec ta chance
+            d'allocation (bourse ou aide).
           </p>
         </div>
       </header>
@@ -127,14 +129,19 @@ function App() {
                 <span className="step" aria-hidden="true">
                   2
                 </span>{" "}
-                Tes notes
+                Tes 3 matières les plus fortes
               </label>
-              <NotesTable lignes={lignes} onChange={setLignes} />
+              <NotesTable
+                lignes={lignes}
+                onChange={setLignes}
+                options={options}
+                max={NB_MATIERES_FORTES}
+              />
               <p className="hint">
-                Les matières de la série {serie} sont pré-affichées. Pour qu'une filière soit
-                estimée, saisis <b>chaque matière qu'elle demande</b> avec sa note /20{" "}
-                <b>et son coefficient</b> (indiqué sur ton relevé ; déjà rempli pour les séries C et
-                D). Les filières auxquelles il manque une note apparaîtront dans « À compléter ».
+                Choisis, parmi les matières de la série {serie}, les{" "}
+                <b>3 où tu as tes meilleures notes</b> (avec leur coefficient — déjà rempli pour les
+                séries C et D). On liste les filières dont le calcul retient au moins 2 de ces
+                matières.
               </p>
             </div>
           )}

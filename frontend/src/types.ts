@@ -27,6 +27,8 @@ export interface Recommandation {
   moyenne: number;
   proba: Probabilites;
   argumentaire: string;
+  /** Codes des matières (parmi les 3 déclarées) réellement utilisées pour le calcul. */
+  matieresRetenues: string[];
 }
 
 export interface RecommandationResponse {

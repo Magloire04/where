@@ -501,6 +501,25 @@ select {
 }
 .reco__statut {
   margin: var(--sp-4) 0 var(--sp-3);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+}
+.reco__retenu {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+.mtag {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 650;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 9px;
+  margin-left: 4px;
 }
 
 /* Barre de répartition */
