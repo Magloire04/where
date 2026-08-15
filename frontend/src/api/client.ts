@@ -26,11 +26,12 @@ export async function chargerMatieres(serie: string): Promise<MatiereSerie[]> {
 export async function recommander(
   serie: string,
   notes: NoteSaisie[],
+  matieresFortes: string[],
 ): Promise<RecommandationResponse> {
   const reponse = await fetch(`${BASE}/recommandations`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ serie, notes }),
+    body: JSON.stringify({ serie, notes, matieresFortes }),
   });
   return lire<RecommandationResponse>(reponse);
 }
