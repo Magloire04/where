@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 /** Orchestre la recommandation : éligibilité, calcul, estimation, classement hybride. */
@@ -45,8 +47,13 @@ public class Recommender {
         this.argumentaire = argumentaire;
     }
 
+    // Correspondance minimale : une filière n'est retenue que si son triplet de calcul partage
+    // au moins ce nombre de matières avec les matières fortes déclarées par l'élève.
+    private static final int MIN_CORRESPONDANCE = 2;
+
     public RecommandationResponse recommander(RecommandationRequest req) {
         List<MatiereNote> notes = normaliser(req.notes());
+        Set<String> codesSaisis = notes.stream().map(MatiereNote::canonique).collect(Collectors.toSet());
         List<Recommandation> scorables = new ArrayList<>();
         List<Filiere> concours = new ArrayList<>();
         List<Filiere> payantes = new ArrayList<>();
@@ -60,14 +67,21 @@ public class Recommender {
                 case CONCOURS -> concours.add(filiere);
                 case PAYANT -> payantes.add(filiere);
                 case CLASSEMENT -> {
-                    List<String> matieres = resolver.resoudre(filiere.matieresRaw(), req.serie());
-                    OptionalDouble moyenne = calculator.calculer(matieres, notes);
+                    List<String> triplet = resolver.resoudre(filiere.matieresRaw(), req.serie());
+                    List<String> retenues =
+                        triplet.stream().filter(codesSaisis::contains).toList();
+                    if (retenues.size() < MIN_CORRESPONDANCE) {
+                        // La filière ne calcule pas assez sur les matières fortes de l'élève.
+                        continue;
+                    }
+                    OptionalDouble moyenne = calculator.calculer(retenues, notes);
                     if (moyenne.isEmpty()) {
                         insuffisantes.add(filiere);
                     } else {
                         Probabilites proba = estimator.estimer(filiere, moyenne.getAsDouble());
                         String arg = argumentaire.construire(filiere, moyenne.getAsDouble(), proba);
-                        scorables.add(new Recommandation(filiere, moyenne.getAsDouble(), proba, arg));
+                        scorables.add(
+                            new Recommandation(filiere, moyenne.getAsDouble(), proba, arg, retenues));
                     }
                 }
             }
