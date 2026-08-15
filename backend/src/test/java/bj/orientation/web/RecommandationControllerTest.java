@@ -18,22 +18,24 @@ class RecommandationControllerTest {
     MockMvc mvc;
 
     @Test
-    void recommanderRetourneUnTop3PourUnEleveD() throws Exception {
+    void recommanderRetourneDesRecommandationsPourUnEleveD() throws Exception {
         String body = """
-            {"serie":"D","notes":[
+            {"serie":"D","matieresFortes":["Maths","PCT","SVT"],"notes":[
               {"libelle":"Maths","note":16,"coefficient":4},
               {"libelle":"PCT","note":15,"coefficient":4},
               {"libelle":"SVT","note":17,"coefficient":5}
             ]}""";
         mvc.perform(post("/api/v1/recommandations").contentType("application/json").content(body))
            .andExpect(status().isOk())
-           .andExpect(jsonPath("$.data.top3").isArray())
-           .andExpect(jsonPath("$.data.top3[0].filiere.filiere").exists());
+           .andExpect(jsonPath("$.data.recommandations").isArray())
+           .andExpect(jsonPath("$.data.recommandations[0].filiere.filiere").exists())
+           .andExpect(jsonPath("$.data.recommandations[0].matieresRetenues").isArray())
+           .andExpect(jsonPath("$.data.matieresACompleter").isArray());
     }
 
     @Test
     void requeteInvalideRetourne400AvecEnveloppeErreur() throws Exception {
-        String body = "{\"serie\":\"\",\"notes\":[]}";
+        String body = "{\"serie\":\"\",\"notes\":[],\"matieresFortes\":[]}";
         mvc.perform(post("/api/v1/recommandations").contentType("application/json").content(body))
            .andExpect(status().isBadRequest())
            .andExpect(jsonPath("$.error.code").exists());
@@ -42,7 +44,7 @@ class RecommandationControllerTest {
     @Test
     void noteHorsBaremeRetourne400() throws Exception {
         String body = """
-            {"serie":"D","notes":[{"libelle":"Maths","note":25,"coefficient":4}]}""";
+            {"serie":"D","matieresFortes":["Maths"],"notes":[{"libelle":"Maths","note":25,"coefficient":4}]}""";
         mvc.perform(post("/api/v1/recommandations").contentType("application/json").content(body))
            .andExpect(status().isBadRequest());
     }
