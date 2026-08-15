@@ -32,11 +32,11 @@ export interface Recommandation {
 }
 
 export interface RecommandationResponse {
-  top3: Recommandation[];
-  alternatives: Recommandation[];
+  /** Filières calculées sur leur triplet complet, triées par chance d'allocation. */
+  recommandations: Recommandation[];
+  /** Codes des matières manquantes à saisir pour couvrir des filières « 2 sur 3 ». */
+  matieresACompleter: string[];
   concours: Filiere[];
-  payantes: Filiere[];
-  donneesInsuffisantes: Filiere[];
 }
 
 export interface NoteSaisie {

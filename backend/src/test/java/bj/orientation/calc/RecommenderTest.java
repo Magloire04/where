@@ -10,7 +10,6 @@ import bj.orientation.model.ModeEntree;
 import bj.orientation.model.NoteSaisie;
 import bj.orientation.model.Palier;
 import bj.orientation.model.RecommandationRequest;
-import bj.orientation.model.RecommandationResponse;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -32,74 +31,78 @@ class RecommenderTest {
             new ArgumentaireBuilder());
     }
 
-    @Test
-    void eleveDFortRecoitTop3NonVide() {
-        var req = new RecommandationRequest("D", List.of(
-            new NoteSaisie("Maths", 16, 4),
-            new NoteSaisie("PCT", 15, 4),
-            new NoteSaisie("SVT", 17, 5)), null);
-        RecommandationResponse resp = build().recommander(req);
-        assertThat(resp.top3()).isNotEmpty().hasSizeLessThanOrEqualTo(3);
+    private RecommandationRequest req(String serie, List<String> fortes, NoteSaisie... notes) {
+        return new RecommandationRequest(serie, List.of(notes), fortes, null);
     }
 
     @Test
-    void resultatsClassesParChanceAllocation() {
-        var req = new RecommandationRequest("D", List.of(
-            new NoteSaisie("Maths", 14, 4),
-            new NoteSaisie("PCT", 13, 4),
-            new NoteSaisie("SVT", 15, 5)), null);
-        RecommandationResponse resp = build().recommander(req);
-        // Bourse OU aide : le classement suit la probabilité d'obtenir une allocation.
-        var chances = java.util.stream.Stream.concat(
-                resp.top3().stream(), resp.alternatives().stream())
-            .map(r -> r.proba().pBourse() + r.proba().pAide()).toList();
-        assertThat(chances).isSortedAccordingTo((a, b) -> Double.compare(b, a));
-    }
-
-    @Test
-    void serieF3ProduitDesEstimations() {
-        // F3 accepte des filières de classement résolues en {Français, Maths, PCT}.
-        var req = new RecommandationRequest("F3", List.of(
-            new NoteSaisie("Maths", 14, 3),
-            new NoteSaisie("PCT", 13, 3),
-            new NoteSaisie("Français", 12, 2)), null);
-        RecommandationResponse resp = build().recommander(req);
-        assertThat(resp.top3()).isNotEmpty();
-    }
-
-    @Test
-    void chaqueRecoIndiqueLesMatieresRetenues() {
-        var req = new RecommandationRequest("D", List.of(
+    void filiereCalculeeSurSonTripletComplet() {
+        var r = build().recommander(req("D", List.of("Maths", "PCT", "SVT"),
             new NoteSaisie("Maths", 15, 4),
             new NoteSaisie("PCT", 14, 4),
-            new NoteSaisie("SVT", 16, 5)), null);
-        RecommandationResponse resp = build().recommander(req);
-        assertThat(resp.top3()).isNotEmpty();
-        assertThat(resp.top3()).allSatisfy(r ->
-            assertThat(r.matieresRetenues()).hasSizeBetween(2, 3));
+            new NoteSaisie("SVT", 16, 5)));
+        assertThat(r.recommandations()).isNotEmpty();
+        assertThat(r.recommandations())
+            .allSatisfy(reco -> assertThat(reco.matieresRetenues()).hasSize(3));
     }
 
     @Test
-    void filiereExclueSiMoinsDeDeuxMatieresFortesCommunes() {
-        // Matières fortes littéraires : les filières scientifiques (Maths/PCT/SVT) ne matchent pas.
-        var req = new RecommandationRequest("D", List.of(
+    void filiere2sur3NonComplete_estEnAttenteEtMatiereManquanteListee() {
+        // Fortes = Anglais, Hist-Géo, Philo. Commerce International (série D) = Anglais, Hist-Géo,
+        // Maths : 2 fortes communes mais Maths manque -> à compléter, pas calculée.
+        var r = build().recommander(req("D", List.of("Anglais", "Hist-Géo", "Philosophie"),
+            new NoteSaisie("Anglais", 15, 2),
+            new NoteSaisie("Hist-Géo", 14, 2),
+            new NoteSaisie("Philosophie", 13, 2)));
+        assertThat(r.matieresACompleter()).contains("MATHS");
+        assertThat(r.recommandations())
+            .allSatisfy(reco -> assertThat(reco.matieresRetenues()).hasSize(3));
+        var noms = r.recommandations().stream().map(reco -> reco.filiere().filiere()).toList();
+        assertThat(noms).doesNotContain("Commerce International");
+    }
+
+    @Test
+    void apresCompletionDeLaMatiereManquante_laFiliereEstScoree() {
+        var r = build().recommander(req("D", List.of("Anglais", "Hist-Géo", "Philosophie"),
+            new NoteSaisie("Anglais", 15, 2),
+            new NoteSaisie("Hist-Géo", 14, 2),
+            new NoteSaisie("Philosophie", 13, 2),
+            new NoteSaisie("Maths", 12, 4)));
+        var noms = r.recommandations().stream().map(reco -> reco.filiere().filiere()).toList();
+        assertThat(noms).contains("Commerce International");
+        assertThat(r.recommandations())
+            .allSatisfy(reco -> assertThat(reco.matieresRetenues()).hasSize(3));
+    }
+
+    @Test
+    void filtrePertinence_moinsDeDeuxFortesCommunes_exclut() {
+        // Fortes littéraires : les filières scientifiques (Maths/PCT/SVT) ne partagent aucune forte.
+        var r = build().recommander(req("D", List.of("Français", "Hist-Géo", "Philosophie"),
             new NoteSaisie("Français", 16, 2),
             new NoteSaisie("Hist-Géo", 15, 2),
-            new NoteSaisie("Philosophie", 14, 2)), null);
-        RecommandationResponse resp = build().recommander(req);
-        assertThat(resp.top3()).isNotEmpty();
-        var noms = java.util.stream.Stream.concat(resp.top3().stream(), resp.alternatives().stream())
-            .map(r -> r.filiere().filiere()).toList();
+            new NoteSaisie("Philosophie", 14, 2)));
+        assertThat(r.recommandations()).isNotEmpty();
+        var noms = r.recommandations().stream().map(reco -> reco.filiere().filiere()).toList();
         assertThat(noms).doesNotContain("Médecine Générale");
     }
 
     @Test
+    void resultatsClassesParChanceAllocation() {
+        var r = build().recommander(req("D", List.of("Maths", "PCT", "SVT"),
+            new NoteSaisie("Maths", 14, 4),
+            new NoteSaisie("PCT", 13, 4),
+            new NoteSaisie("SVT", 15, 5)));
+        var chances = r.recommandations().stream()
+            .map(reco -> reco.proba().pBourse() + reco.proba().pAide()).toList();
+        assertThat(chances).isSortedAccordingTo((a, b) -> Double.compare(b, a));
+    }
+
+    @Test
     void filieresConcoursSontListeesAPart() {
-        var req = new RecommandationRequest("D", List.of(
+        var r = build().recommander(req("D", List.of("Maths", "PCT", "SVT"),
             new NoteSaisie("PCT", 14, 4),
             new NoteSaisie("SVT", 14, 5),
-            new NoteSaisie("Maths", 12, 4)), null);
-        RecommandationResponse resp = build().recommander(req);
-        assertThat(resp.concours()).anyMatch(f -> f.modeEntree() == ModeEntree.CONCOURS);
+            new NoteSaisie("Maths", 12, 4)));
+        assertThat(r.concours()).anyMatch(f -> f.modeEntree() == ModeEntree.CONCOURS);
     }
 }

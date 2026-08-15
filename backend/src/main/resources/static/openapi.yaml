@@ -115,7 +115,7 @@ components:
           example: 4
     RecommandationRequest:
       type: object
-      required: [serie, notes]
+      required: [serie, notes, matieresFortes]
       properties:
         serie:
           type: string
@@ -123,8 +123,15 @@ components:
         notes:
           type: array
           minItems: 1
+          description: Notes saisies (matières fortes + éventuelles matières complétées).
           items:
             $ref: "#/components/schemas/NoteSaisie"
+        matieresFortes:
+          type: array
+          minItems: 1
+          description: Libellés des matières fortes déclarées (filtre de pertinence).
+          items: { type: string }
+          example: ["Maths", "PCT", "SVT"]
         domaine:
           type: string
           nullable: true
@@ -166,22 +173,24 @@ components:
         proba:
           $ref: "#/components/schemas/Probabilites"
         argumentaire: { type: string }
+        matieresRetenues:
+          type: array
+          description: Codes des 3 matières du triplet utilisées pour le calcul.
+          items: { type: string }
+          example: ["MATHS", "PCT", "SVT"]
     RecommandationResponse:
       type: object
       properties:
-        top3:
+        recommandations:
           type: array
+          description: Filières calculées sur leur triplet complet, triées par chance d'allocation.
           items: { $ref: "#/components/schemas/Recommandation" }
-        alternatives:
+        matieresACompleter:
           type: array
-          items: { $ref: "#/components/schemas/Recommandation" }
+          description: Codes des matières manquantes à saisir pour couvrir des filières « 2 sur 3 ».
+          items: { type: string }
+          example: ["MATHS"]
         concours:
-          type: array
-          items: { $ref: "#/components/schemas/Filiere" }
-        payantes:
-          type: array
-          items: { $ref: "#/components/schemas/Filiere" }
-        donneesInsuffisantes:
           type: array
           items: { $ref: "#/components/schemas/Filiere" }
     ApiError:
