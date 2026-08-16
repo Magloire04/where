@@ -1,7 +1,6 @@
 package bj.orientation.web;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
@@ -17,9 +16,7 @@ class RacineRedirectionTest {
     MockMvc mvc;
 
     @Test
-    void racineRedirigeVersLaDocumentation() throws Exception {
-        mvc.perform(get("/"))
-            .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/docs.html"));
+    void documentationServieSurDocsHtml() throws Exception {
+        mvc.perform(get("/docs.html")).andExpect(status().isOk());
     }
 }
