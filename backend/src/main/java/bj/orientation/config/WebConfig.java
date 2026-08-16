@@ -7,22 +7,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/** Redirige la racine vers la doc et applique le CORS (origines restreintes, configurables). */
+/**
+ * Applique le CORS (origines restreintes, configurables). La racine {@code /} sert l'application
+ * (frontend statique embarqué dans le conteneur) ; la doc reste sur {@code /docs.html}.
+ */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig {
 
   private final List<String> allowedOrigins;
 
   public WebConfig(@Value("${app.cors.allowed-origins}") List<String> allowedOrigins) {
     this.allowedOrigins = allowedOrigins;
-  }
-
-  @Override
-  public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addRedirectViewController("/", "/docs.html");
   }
 
   @Bean

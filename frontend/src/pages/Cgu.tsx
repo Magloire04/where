@@ -3,7 +3,7 @@ export function Cgu() {
   return (
     <article className="legal">
       <h1>Conditions Générales d'Utilisation</h1>
-      <p className="legal__maj">Dernière mise à jour : [À COMPLÉTER — date de mise en ligne]</p>
+      <p className="legal__maj">Dernière mise à jour : août 2026</p>
 
       <h2>1. Objet</h2>
       <p>

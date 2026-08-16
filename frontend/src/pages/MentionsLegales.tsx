@@ -3,28 +3,23 @@ export function MentionsLegales() {
   return (
     <article className="legal">
       <h1>Mentions légales</h1>
-      <p className="legal__maj">Dernière mise à jour : [À COMPLÉTER — date de mise en ligne]</p>
+      <p className="legal__maj">Dernière mise à jour : août 2026</p>
 
       <h2>Éditeur</h2>
-      <p>[À COMPLÉTER — dénomination / statut, adresse].</p>
+      <p>bytechnum (site web) — Porto-Novo, Bénin.</p>
 
       <h2>Directeur de la publication</h2>
-      <p>[À COMPLÉTER — nom du responsable de la publication].</p>
+      <p>bytechnum.</p>
 
       <h2>Contact</h2>
-      <p>[À COMPLÉTER — email de contact].</p>
+      <p>
+        <a href="mailto:apresbac@bytechnum.com">apresbac@bytechnum.com</a>.
+      </p>
 
       <h2>Hébergement</h2>
       <p>
-        Interface (site) : Spaceship (spaceship.com). Service de calcul (API) : [À COMPLÉTER —
-        hébergeur du backend : nom, raison sociale, adresse].
-      </p>
-
-      <h2>Déclaration APDP</h2>
-      <p>
-        Le traitement de données a fait l'objet d'une déclaration auprès de l'Autorité de Protection
-        des Données à caractère Personnel (APDP), conformément à la loi n°2017-20 [À COMPLÉTER —
-        référence].
+        Site et service de calcul hébergés sur Spaceship Starlight Hyperlift (Spaceship,
+        spaceship.com).
       </p>
 
       <h2>Propriété intellectuelle et crédits</h2>
