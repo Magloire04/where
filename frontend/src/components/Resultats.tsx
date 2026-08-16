@@ -49,6 +49,30 @@ export function Resultats({ data }: { data: RecommandationResponse }) {
 
   return (
     <section className="results" aria-label="Résultats">
+      <div className="disclaimer" role="note">
+        <span className="disclaimer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+            <path
+              d="M12 3.5 4 7v5c0 4.4 3.2 7.6 8 8.5 4.8-.9 8-4.1 8-8.5V7l-8-3.5Z"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12 8.2v4.2M12 15.4h.01"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+          </svg>
+        </span>
+        <p className="disclaimer__txt">
+          <b>Estimation indicative.</b> Ces résultats ne constituent en aucun cas une garantie de
+          classement par l'État. Ce sont des propositions calculées à partir de tes notes et des
+          conditions de classement du guide d'orientation officiel du MESRS.
+        </p>
+      </div>
+
       <h2 className="results__title">Tes meilleures chances</h2>
       <p className="results__lead">
         Classées par chance d'obtenir une allocation — bourse ou aide.

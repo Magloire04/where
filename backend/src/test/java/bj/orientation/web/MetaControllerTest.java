@@ -26,6 +26,15 @@ class MetaControllerTest {
   }
 
   @Test
+  void seriesLimiteesAEnseignementGeneral() throws Exception {
+    mvc.perform(get("/api/v1/series"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.data.length()").value(5))
+        .andExpect(jsonPath("$.data[0]").value("A1"))
+        .andExpect(jsonPath("$.data[4]").value("D"));
+  }
+
+  @Test
   void serieInconnueRenvoie400() throws Exception {
     mvc.perform(get("/api/v1/series/ZZZ/matieres"))
         .andExpect(status().isBadRequest())

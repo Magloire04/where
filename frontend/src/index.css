@@ -380,6 +380,37 @@ select {
   font-size: 0.95rem;
   margin: var(--sp-1) 0 var(--sp-5);
 }
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  background: #fdf7ec;
+  border: 1px solid #f2e2c2;
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-5);
+  box-shadow: var(--shadow-sm);
+}
+.disclaimer__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fbeccb;
+  color: var(--aide);
+}
+.disclaimer__txt {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.disclaimer__txt b {
+  color: var(--ink);
+  font-weight: 700;
+}
 .reco {
   margin-bottom: var(--sp-4);
   padding: var(--sp-4);
