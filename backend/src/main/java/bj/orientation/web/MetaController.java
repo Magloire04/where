@@ -4,7 +4,6 @@ import bj.orientation.data.MatiereSerieCatalog;
 import bj.orientation.model.MatiereSerie;
 import bj.orientation.model.Serie;
 import bj.orientation.web.dto.ApiResponse;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,7 @@ public class MetaController {
 
   @GetMapping("/series")
   public ApiResponse<List<String>> series() {
-    return new ApiResponse<>(Arrays.stream(Serie.values()).map(Enum::name).toList());
+    return new ApiResponse<>(Serie.generales().stream().map(Enum::name).toList());
   }
 
   @GetMapping("/series/{serie}/matieres")
