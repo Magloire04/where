@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
   tomcat:
     max-swallow-size: 30MB
 spring:
@@ -9,6 +9,11 @@ spring:
     multipart:
       max-file-size: 15MB
       max-request-size: 20MB
+
+app:
+  cors:
+    # Origines autorisées (séparées par des virgules). Surcharge prod via APP_CORS_ALLOWED_ORIGINS.
+    allowed-origins: http://localhost:5173
 
 ocr:
   tessdata-path: ${OCR_TESSDATA_PATH:}
