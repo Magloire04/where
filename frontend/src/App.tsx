@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
 import { chargerMatieres, chargerSeries, recommander } from "./api/client";
+import { Footer } from "./components/Footer";
 import { NotesTable } from "./components/NotesTable";
 import { Resultats } from "./components/Resultats";
+import { Cgu } from "./pages/Cgu";
+import { Confidentialite } from "./pages/Confidentialite";
+import { MentionsLegales } from "./pages/MentionsLegales";
 import { libelleMatiere } from "./utils/matieres";
 import type { MatiereSerie, NoteSaisie, RangNote, RecommandationResponse } from "./types";
+
+type Route = "accueil" | "confidentialite" | "cgu" | "mentions-legales";
+
+function routeFromHash(): Route {
+  const h = window.location.hash.replace(/^#\/?/, "");
+  if (h === "confidentialite" || h === "cgu" || h === "mentions-legales") {
+    return h;
+  }
+  return "accueil";
+}
 
 const NB_MATIERES_FORTES = 3;
 const lignesVides = (n: number): RangNote[] =>
@@ -57,11 +71,21 @@ function App() {
   const [chargement, setChargement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
   const [resultats, setResultats] = useState<RecommandationResponse | null>(null);
+  const [route, setRoute] = useState<Route>(routeFromHash());
 
   useEffect(() => {
     chargerSeries()
       .then(setSeries)
       .catch(() => setSeries([]));
+  }, []);
+
+  useEffect(() => {
+    const onHash = () => {
+      setRoute(routeFromHash());
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
   async function choisirSerie(nouvelleSerie: string) {
@@ -113,6 +137,28 @@ function App() {
 
   const optionsCompletion = options.filter((o) => aCompleter.includes(o.code));
 
+  if (route !== "accueil") {
+    const contenu =
+      route === "confidentialite" ? (
+        <Confidentialite />
+      ) : route === "cgu" ? (
+        <Cgu />
+      ) : (
+        <MentionsLegales />
+      );
+    return (
+      <>
+        <main className="container legal-page">
+          <a className="legal__back" href="#/">
+            ← Retour à l'accueil
+          </a>
+          {contenu}
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <header className="hero">
@@ -138,7 +184,7 @@ function App() {
               <span className="step" aria-hidden="true">
                 1
               </span>{" "}
-              Ta série de bac
+              Ta série (enseignement général)
             </label>
             <select
               id="serie"
@@ -230,12 +276,7 @@ function App() {
         {resultats && <Resultats data={resultats} />}
       </main>
 
-      <footer className="footer">
-        <div className="footer__inner">
-          Données : Guide d'orientation MESRS 2026-2027 (224 filières publiques). Aucune donnée
-          personnelle n'est conservée : tes notes sont traitées le temps du calcul, puis oubliées.
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
