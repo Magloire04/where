@@ -1,5 +1,5 @@
 /* ============================================================
-   Après mon bac — feuille de style mobile-first
+   Après mon bac : feuille de style mobile-first
    Base = téléphone ; on enrichit ensuite en min-width.
    ============================================================ */
 
@@ -143,6 +143,18 @@ input:focus-visible,
   max-width: 56ch;
   font-size: 0.98rem;
   margin-top: var(--sp-3);
+}
+.hero__aide {
+  display: inline-block;
+  margin-top: var(--sp-3);
+  color: var(--brand-strong);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.hero__aide:hover {
+  opacity: 0.8;
 }
 
 /* ---------- Layout ---------- */

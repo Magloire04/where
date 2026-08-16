@@ -45,7 +45,7 @@ export function NotesTable({ lignes, onChange, options, max }: Props) {
                   value={ligne.libelle}
                   onChange={(e) => choisirMatiere(index, e.target.value)}
                 >
-                  <option value="">— choisis une matière —</option>
+                  <option value="">Choisis une matière</option>
                   {options
                     .filter((o) => o.libelle === ligne.libelle || !dejaChoisies.has(o.libelle))
                     .map((o) => (

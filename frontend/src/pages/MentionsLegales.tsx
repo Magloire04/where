@@ -6,7 +6,7 @@ export function MentionsLegales() {
       <p className="legal__maj">Dernière mise à jour : août 2026</p>
 
       <h2>Éditeur</h2>
-      <p>bytechnum (site web) — Porto-Novo, Bénin.</p>
+      <p>bytechnum (site web), Porto-Novo, Bénin.</p>
 
       <h2>Directeur de la publication</h2>
       <p>bytechnum.</p>

@@ -3,17 +3,18 @@ import { chargerMatieres, chargerSeries, recommander } from "./api/client";
 import { Footer } from "./components/Footer";
 import { NotesTable } from "./components/NotesTable";
 import { Resultats } from "./components/Resultats";
+import { Aide } from "./pages/Aide";
 import { Cgu } from "./pages/Cgu";
 import { Confidentialite } from "./pages/Confidentialite";
 import { MentionsLegales } from "./pages/MentionsLegales";
 import { libelleMatiere } from "./utils/matieres";
 import type { MatiereSerie, NoteSaisie, RangNote, RecommandationResponse } from "./types";
 
-type Route = "accueil" | "confidentialite" | "cgu" | "mentions-legales";
+type Route = "accueil" | "aide" | "confidentialite" | "cgu" | "mentions-legales";
 
 function routeFromHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, "");
-  if (h === "confidentialite" || h === "cgu" || h === "mentions-legales") {
+  if (h === "aide" || h === "confidentialite" || h === "cgu" || h === "mentions-legales") {
     return h;
   }
   return "accueil";
@@ -114,7 +115,7 @@ function App() {
     }
     if (notesValides(lignesFortes).length < 2) {
       setErreur(
-        "Choisis au moins 2 de tes matières fortes, avec leur note (0–20) et leur coefficient.",
+        "Choisis au moins 2 de tes matières fortes, avec leur note (0 à 20) et leur coefficient.",
       );
       return;
     }
@@ -139,7 +140,9 @@ function App() {
 
   if (route !== "accueil") {
     const contenu =
-      route === "confidentialite" ? (
+      route === "aide" ? (
+        <Aide />
+      ) : route === "confidentialite" ? (
         <Confidentialite />
       ) : route === "cgu" ? (
         <Cgu />
@@ -174,6 +177,9 @@ function App() {
             Choisis ta série, puis tes 3 matières les plus fortes avec leurs notes. On te liste les
             filières qui les valorisent, chacune avec ta chance d'allocation (bourse ou aide).
           </p>
+          <a className="hero__aide" href="#/aide">
+            Comment ça marche ?
+          </a>
         </div>
       </header>
 
@@ -192,7 +198,7 @@ function App() {
               value={serie}
               onChange={(e) => choisirSerie(e.target.value)}
             >
-              <option value="">— choisis ta série —</option>
+              <option value="">Choisis ta série</option>
               {series.map((s) => (
                 <option key={s} value={s}>
                   {s}
@@ -217,7 +223,7 @@ function App() {
               />
               <p className="hint">
                 Choisis, parmi les matières de la série {serie}, les{" "}
-                <b>3 où tu as tes meilleures notes</b> (avec leur coefficient — déjà rempli pour les
+                <b>3 où tu as tes meilleures notes</b> (avec leur coefficient, déjà rempli pour les
                 séries C et D).
               </p>
             </div>
