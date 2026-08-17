@@ -41,8 +41,11 @@ export function Confidentialite() {
 
       <h2>6. Durée de conservation</h2>
       <p>
-        <b>Aucune.</b> Tes notes sont traitées en mémoire le temps du calcul, ne sont pas
-        enregistrées sur le serveur et sont effacées immédiatement après l'affichage du résultat.
+        <b>Aucune pour tes notes.</b> Tes notes sont traitées en mémoire le temps du calcul, ne sont
+        pas enregistrées sur le serveur et sont effacées immédiatement après l'affichage du
+        résultat. Seules des <b>statistiques d'usage anonymes et agrégées</b> (nombre de calculs,
+        série choisie, temps de réponse) sont conservées pour suivre et améliorer le service ; elles
+        ne permettent pas de t'identifier.
       </p>
 
       <h2>7. Destinataires et transferts</h2>

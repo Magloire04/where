@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { chargerMatieres, chargerSeries, recommander } from "./api/client";
+import { chargerMatieres, chargerSeries, pingVisite, recommander } from "./api/client";
 import { Footer } from "./components/Footer";
 import { NotesTable } from "./components/NotesTable";
 import { Resultats } from "./components/Resultats";
+import { Admin } from "./pages/Admin";
 import { Aide } from "./pages/Aide";
 import { Cgu } from "./pages/Cgu";
 import { Confidentialite } from "./pages/Confidentialite";
@@ -10,11 +11,17 @@ import { MentionsLegales } from "./pages/MentionsLegales";
 import { libelleMatiere } from "./utils/matieres";
 import type { MatiereSerie, NoteSaisie, RangNote, RecommandationResponse } from "./types";
 
-type Route = "accueil" | "aide" | "confidentialite" | "cgu" | "mentions-legales";
+type Route = "accueil" | "aide" | "confidentialite" | "cgu" | "mentions-legales" | "admin";
 
 function routeFromHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, "");
-  if (h === "aide" || h === "confidentialite" || h === "cgu" || h === "mentions-legales") {
+  if (
+    h === "aide" ||
+    h === "confidentialite" ||
+    h === "cgu" ||
+    h === "mentions-legales" ||
+    h === "admin"
+  ) {
     return h;
   }
   return "accueil";
@@ -78,6 +85,7 @@ function App() {
     chargerSeries()
       .then(setSeries)
       .catch(() => setSeries([]));
+    pingVisite();
   }, []);
 
   useEffect(() => {
@@ -142,6 +150,8 @@ function App() {
     const contenu =
       route === "aide" ? (
         <Aide />
+      ) : route === "admin" ? (
+        <Admin />
       ) : route === "confidentialite" ? (
         <Confidentialite />
       ) : route === "cgu" ? (
