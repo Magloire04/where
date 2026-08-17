@@ -58,3 +58,21 @@ export interface RangNote {
   note: string;
   coefficient: string;
 }
+
+/** Point d'une série de données du monitoring (jour ou série -> valeur). */
+export interface Point {
+  cle: string;
+  valeur: number;
+}
+
+/** KPIs du tableau de bord de monitoring (agrégats anonymes). */
+export interface Stats {
+  totalCalculs: number;
+  totalVisites: number;
+  latenceMoyenneMs: number;
+  latenceMaxMs: number;
+  tauxErreur: number;
+  demarrage: string;
+  parJour: Point[];
+  parSerie: Point[];
+}

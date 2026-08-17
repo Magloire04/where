@@ -1,4 +1,4 @@
-import type { MatiereSerie, NoteSaisie, RecommandationResponse } from "../types";
+import type { MatiereSerie, NoteSaisie, RecommandationResponse, Stats } from "../types";
 
 const BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080/api/v1";
 
@@ -34,4 +34,18 @@ export async function recommander(
     body: JSON.stringify({ serie, notes, matieresFortes }),
   });
   return lire<RecommandationResponse>(reponse);
+}
+
+/** Enregistre une visite (chargement de l'app). Best-effort : les erreurs sont ignorées. */
+export async function pingVisite(): Promise<void> {
+  try {
+    await fetch(`${BASE}/metriques/visite`, { method: "POST" });
+  } catch {
+    /* monitoring non bloquant */
+  }
+}
+
+/** Charge les KPIs du monitoring (nécessite le jeton admin). */
+export async function chargerStats(token: string): Promise<Stats> {
+  return lire<Stats>(await fetch(`${BASE}/admin/stats`, { headers: { "X-Admin-Token": token } }));
 }
