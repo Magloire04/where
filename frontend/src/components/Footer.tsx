@@ -7,7 +7,8 @@ export function Footer() {
           Données : Guide d'orientation MESRS 2026-2027 (224 filières publiques). Aucune donnée
           personnelle n'est conservée : tes notes sont traitées le temps du calcul, puis oubliées.
         </p>
-        <nav className="footer__nav" aria-label="Informations légales">
+        <nav className="footer__nav" aria-label="Liens du site">
+          <a href="#/aide">Aide</a>
           <a href="#/confidentialite">Politique de confidentialité</a>
           <a href="#/cgu">Conditions d'utilisation</a>
           <a href="#/mentions-legales">Mentions légales</a>

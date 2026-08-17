@@ -75,13 +75,14 @@ export function Resultats({ data }: { data: RecommandationResponse }) {
 
       <h2 className="results__title">Tes meilleures chances</h2>
       <p className="results__lead">
-        Classées par chance d'obtenir une allocation — bourse ou aide.
+        Classées par chance d'obtenir une allocation (bourse ou aide).
       </p>
 
       {classees.length === 0 ? (
         <div className="card empty">
-          Aucune filière calculée pour l'instant. Renseigne tes 3 matières fortes — et complète les
-          matières demandées — pour voir tes chances.
+          {data.matieresACompleter.length > 0
+            ? "Il te manque une matière pour calculer certaines filières. Ajoute les matières demandées dans la section « Affine ton estimation » ci-dessus, puis relance le calcul."
+            : "Aucune filière ne correspond à ces 3 matières fortes. Essaie d'autres matières fortes."}
         </div>
       ) : (
         <>
